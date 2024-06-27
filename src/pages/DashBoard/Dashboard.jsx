@@ -37,7 +37,7 @@ const Dashboard = () => {
           title="Preferences"
           link="/preferences"
         />
-        <Sidebar Icon={ExitToAppIcon} title="Logout" />
+        <Sidebar Icon={ExitToAppIcon} title="Logout" link="/Login" />
       </div>
       <div className="main__body__dashboard">
         <Container>
@@ -126,15 +126,6 @@ const Dashboard = () => {
                     />
                   </div>
                 );
-                // <div key={index}>
-                //   <CourseCard
-                //     title={val.title}
-                //     name={val.name}
-                //     id={index}
-                //     img={val.thumbnail}
-                //     date={val.date} 
-                //   />
-                // </div>
               })}
           </div>
         </Container>

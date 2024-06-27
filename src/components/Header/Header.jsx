@@ -10,7 +10,7 @@ import { Button } from "@mui/material";
 import './header.css'
 
 const Header = () => {
-  const user = { role: null };
+  const user = { role: "Student" };
   console.log(user.role);
   const [toggle, setToggle] = useState(false);
   const toggleClose = () => {
@@ -91,24 +91,21 @@ const Header = () => {
                 </li>{" "}
               </>
             )}
-            {user && user.role ? (
-              <div>
+            {user.role != null && (
+               <>
                 <li>
-              <Link onClick={toggleClose} to="/profile">
+              <NavLink onClick={toggleClose} to="/profile">
                 Profile
-              </Link>
+              </NavLink>
             </li>
             <li>
               <NavLink onClick={toggleClose} to="/all-courses">
                 All Courses
               </NavLink>
             </li>
-              </div>
-            ):(<></>)
-
+            </>
+            )
             }
-
-            
           </ul>
         )}
       </div>
