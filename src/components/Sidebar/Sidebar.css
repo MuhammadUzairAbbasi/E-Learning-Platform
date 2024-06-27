@@ -1,0 +1,36 @@
+.sidebar__dashboard__row {
+    display: flex;
+    padding: 10px 10px;
+    align-items: center;
+    margin-left: 5%;
+    font-size: 20px;
+
+}
+.sidebar__dashboard__row:hover {
+    background-color: lightgray;
+}
+
+.sidebar_logout{
+    display: flex ;
+    align-items: center;
+    font-size: 20px;
+}
+.sidebar_data{
+    display: flex;
+        align-items: center;
+        font-size: 20px;
+}
+
+.sidebar__dashboard__row>a {
+    text-decoration: none;
+    color: gray;
+    display: flex;
+
+}
+.sidebar__dashboard__row>a>.MuiSvgIcon-root {
+    margin-right: 20px;
+}
+
+.adminSidebarStyle>span {
+    color: white !important;
+}
