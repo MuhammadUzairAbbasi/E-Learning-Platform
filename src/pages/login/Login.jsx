@@ -4,6 +4,7 @@ import { Container, Paper, Typography } from '@mui/material'
 import { Col, Row } from 'react-bootstrap'
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
+import {Link} from 'react-router-dom'
 
 
 const Login = () => {
@@ -30,7 +31,7 @@ const Login = () => {
         <Form.Label>Password</Form.Label>
         <Form.Control type="password" placeholder="Password" />
       </Form.Group>
-      <Typography  style={{ color: "GrayText" }} variant="subtitle2">Don't have an Account?  <span className='text-primary'>Register here</span></Typography>
+      <Typography  style={{ color: "GrayText" }} variant="subtitle2">Don't have an Account?  <span className='text-primary'><Link to='/Register'>Register here</Link></span></Typography>
       <Button variant="primary" type="submit">
         Submit
       </Button>

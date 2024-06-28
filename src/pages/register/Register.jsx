@@ -4,6 +4,7 @@ import { Container, Paper, Typography } from '@mui/material'
 import { Col, Row } from 'react-bootstrap'
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
+import { Link } from 'react-router-dom';
 const Register = () => {
   return (
     
@@ -37,7 +38,7 @@ const Register = () => {
         <Form.Label>Confirm Password</Form.Label>
         <Form.Control type="password" placeholder="Confirm Password" />
       </Form.Group>
-      <Typography  style={{ color: "GrayText" }} variant="subtitle2">Already have an Account?  <span className='text-primary'>Login Here</span></Typography>
+      <Typography  style={{ color: "GrayText" }} variant="subtitle2">Already have an Account?  <span className='text-primary'><Link to="/Login">Login Here</Link></span></Typography>
       <Button variant="primary" type="submit">
         Submit
       </Button>
