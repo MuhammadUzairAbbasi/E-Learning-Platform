@@ -10,7 +10,7 @@ import { Button } from "@mui/material";
 import './header.css'
 
 const Header = () => {
-  const user = { role: "Student" };
+  const user = { role: null };
   console.log(user.role);
   const [toggle, setToggle] = useState(false);
   const toggleClose = () => {
