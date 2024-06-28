@@ -5,7 +5,7 @@
   box-shadow: 0 0 10px 1px rgba(128, 128, 128, 0.185);
   position: sticky;
   top: 0%;
-  padding: 10px 10px;
+  padding: 5px 5px;
   font-family: "Poppins", sans-serif;
   z-index: 100;
 }
@@ -18,8 +18,7 @@
   display: flex;
   align-items: center;
   margin-right: 50px;
-  font-size: 20px;
-  width: 250px;
+  width: 200px;
   gap: 10px;
 }
 
@@ -31,12 +30,12 @@
 
 .left__header > a {
   color: black;
-  text-decoration: none;
+  text-decoration:none;
 }
 
 .middle__header {
   flex: 1;
-  font-size: 17px;
+  font-size: 14px;
 }
 
 .middle__header > ul {
@@ -97,9 +96,9 @@
 }
 
 @media screen and (max-width: 768px) {
-  .right__header {
+  /* .right__header {
     display: none;
-  }
+  } */
 
   .admin__toggle__menu {
     display: block;
@@ -110,7 +109,7 @@
   }
 
   .middle__header > ul {
-    position: fixed;
+    position: relative;
     display: block;
     position: absolute;
     top: 70px;

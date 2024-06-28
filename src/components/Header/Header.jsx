@@ -22,7 +22,7 @@ const Header = () => {
       <div className="left__header">
         <Link>
           <img src="src\assets\Logo.jpg" alt="Logo" />
-          <h4>EDU-HUB</h4>
+          <h5 style={{fontWeight:"600",}}>Edu-Hub</h5>
         </Link>
       </div>
       <div

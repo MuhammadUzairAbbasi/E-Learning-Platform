@@ -42,7 +42,7 @@ const Dashboard = () => {
       <div className="main__body__dashboard">
         <Container>
           <div className="dashboard__header__name">
-            <h2 className="dashboard__name">{user && user.userName}</h2>
+            <h2  className="dashboard__name">{user && user.userName}</h2>
             <Link to="/">
               <div className="dashboard_link">
                 <h3>Dashboard</h3>
@@ -78,9 +78,9 @@ const Dashboard = () => {
         </div>
         <Container>
           <div className="recent_courses ">
-            <Typography className="recent_courses_header" variant="h6">
-              Recently accessed courses
-            </Typography>
+            <h4 className="recent_courses_header">
+            Recently accessed courses
+            </h4>
             <div className="recent_courses_button">
               <IconButton
                 onClick={() => {

@@ -16,7 +16,7 @@
 .main__body__dashboard {
   flex: 1;
   position: relative;
-  margin-left: 10px;
+  margin-left: 0;
   padding-right: 20px;
   padding-left: 20px;
 }
@@ -27,6 +27,9 @@
   justify-content: space-between;
   align-items: center;
   padding: 10px;
+}
+.dashboard_link > h3{
+  font-size: 30px;
 }
 
 .recent_courses {
@@ -39,29 +42,12 @@
         margin-top: 5%;
 }
 
-.recent_courses_header{
+.recent_courses_header {
     margin-left: 2%;
 }
 
 .right__sidebar__dashboard {
   flex: 0.2;
-}
-
-@media screen and (max-width: 768px) {
-  .left__sidebar__dashboard {
-    display: none;
-    flex: 0;
-  }
-
-  .main__body__dashboard {
-    flex: 1;
-    margin-left: 0px;
-    margin-right: 0px;
-  }
-
-  .right__sidebar__dashboard {
-    flex: 1;
-  }
 }
 
 .body_card_container {
@@ -112,5 +98,27 @@
     color: black;
     border: 1px solid gray;
     transition: all 0.3s ease-in;
+}
+
+
+@media screen and (max-width: 1000px) {
+  
+  .main__body__dashboard {
+    flex: 1;
+    margin-left: 0px;
+    margin-right: 0px;
+  }
+
+  .right__sidebar__dashboard {
+    flex: 1;
+  }
+  .dashboard_link > h3{
+    font-size: 17px;
+    text-align: center;
+  }
+  .recent_courses_header {
+    margin-left: 2%;
+    font-size: 15px;
+}
 }
 
