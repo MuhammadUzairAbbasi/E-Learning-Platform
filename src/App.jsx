@@ -3,7 +3,7 @@ import { BrowserRouter , Routes, Route } from "react-router-dom";
 import "./App.css";
 import Login from "./pages/login/Login.jsx";
 import Register from "./pages/register/Register.jsx";
-import AllCourses from "/src/components/All-Course/AllCourses.jsx";
+import AllCourses from "./pages/All-Course/AllCourses.jsx";
 import Dashboard from './pages/DashBoard/Dashboard.jsx';
 import Header from './components/Header/Header';
 import Profile from './pages/Profile/Profile';
