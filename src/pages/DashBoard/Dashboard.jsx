@@ -107,6 +107,7 @@ const Dashboard = () => {
           />
         </div>
         <Container>
+          
           <div className="recent_courses ">
             <h4 className="recent_courses_header">
             Recently accessed courses
