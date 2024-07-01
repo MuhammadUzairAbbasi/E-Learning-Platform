@@ -1,13 +1,15 @@
 .dashboard {
   background-color: #f7f7f7;
-  width:100%;
+  width: 100%;
 }
-.dashboard-wrapper{
-  width:100%;
-  display:flex;
+
+.dashboard-wrapper {
+  width: 100%;
+  display: flex;
   justify-content: flex-start;
 
 }
+
 .left__sidebar__dashboard {
   box-shadow: 0px 5px 22px -13px grey;
   position: absolute;
@@ -15,6 +17,7 @@
   transition: width 0.3s ease;
   width: 60px;
 }
+
 .left__sidebar__dashboard.expanded {
   width: 200px;
 }
@@ -22,7 +25,7 @@
 .main__body__dashboard {
   flex: 1;
   position: relative;
-  margin-left: 50px; 
+  margin-left: 40px;
   padding-right: 20px;
   padding-left: 20px;
   transition: margin-left 0.3s ease;
@@ -35,71 +38,80 @@
   align-items: center;
   padding: 10px;
 }
-.dashboard_link > h3{
+
+.dashboard_link>h3 {
   font-size: 30px;
 }
 
 .recent_courses {
-    background-color: lightgray;
-        display: flex;
-        border-radius: 10px;
-        justify-content: space-between;
-        align-items: center;
-        padding: 10px;
-        margin-top: 5%;
+  background-color: lightgray;
+  display: flex;
+  border-radius: 10px;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+  margin-top: 5%;
 }
 
-.recent_courses_header {
+/* .recent_courses_header {
     margin-left: 2%;
 }
 
 .right__sidebar__dashboard {
   flex: 0.2;
-}
+} */
 
 .body_card_container {
   display: flex;
   flex-wrap: wrap;
-  justify-content:center;
-  gap: 5%;
-  margin-top: 3%;
+  justify-content: center;
+  gap: 30px;
+  /* margin-top: 3%; */
 }
 
 /* module.css */
 .dashboard__header__name {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    background-color: #E1E6EF;
-
-    border-radius: 10px;
-    padding: 10px 20px;
-    margin: 50px 0px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #E1E6EF;
+  border-radius: 10px;
+  padding: 10px 20px;
+  margin: 35px 0px;
 }
 
 .dashboard__header__name>h2 {
-    margin-top: 5px;
+  margin-top: 5px;
 }
 
 .dashboard__header__name>a {
-    color: rgba(0, 0, 0, 0.603);
-    text-decoration: none;
+  color: rgba(0, 0, 0, 0.603);
+  text-decoration: none;
 }
 
 .dashboard__header__name>a:hover {
-    color: rgb(0, 0, 0);
+  color: rgb(0, 0, 0);
 
 }
 
 @media screen and (max-width: 680px) {
-  
-  .dashboard_link > h3{
+
+  .dashboard_link>h3 {
     font-size: 17px;
     text-align: center;
   }
+
   .recent_courses_header {
     margin-left: 2%;
     font-size: 15px;
-}
-}
+  }
 
+  .body_card_container {
+    gap: 10px;
+
+  }
+
+  .dashboard__header__name {
+    margin: 20px 0px;
+  }
+}

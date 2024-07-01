@@ -87,19 +87,22 @@ const Dashboard = () => {
       
           <Body4Card
             link="/profile"
-            shortTitle="Your Profile"
             title="Profile"
             Icon={AccountCircleIcon}
           />
           <Body4Card
             link="/settings"
-            shortTitle="Preferences"
             title="Settings"
             Icon={SettingsApplicationsIcon}
           />
           <Body4Card
-            shortTitle="Performance"
-            title="Grades"
+            link="/My-Courses"
+            title="My Courses"
+            Icon={TouchAppIcon}
+          />
+          <Body4Card
+            link="/My-Courses"
+            title="All Courses"
             Icon={TouchAppIcon}
           />
         </div>

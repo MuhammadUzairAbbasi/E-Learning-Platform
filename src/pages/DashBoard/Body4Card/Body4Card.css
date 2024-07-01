@@ -1,51 +1,64 @@
+/* Body4Card.css */
+
 .icon__style__b4card {
     color: white !important;
     font-size: 50px !important;
-}
-
-.body4__card {
+  }
+  
+  .body4__card {
     box-shadow: 0px 0px 30px 2px rgba(128, 128, 128, 0.281);
-    margin: 5px 10px;
     display: flex;
     justify-content: center;
     align-items: center;
+    gap:10px;
     padding: 15px 20px;
     background-color: white;
     border-radius: 7px;
-    width: 200px;
+    width: 190px;
     text-decoration: none;
     font-size: 14px;
     color: rgb(65, 60, 60);
-}
-
-.body4__card:hover {
+    transition: background-color 0.3s ease, color 0.3s ease;
+  }
+  
+  .body4__card:hover {
     text-decoration: none;
     background-color: lightgray;
     color: black;
-}
-
-.icon__style {
+  }
+  
+  .icon__style {
     background-color: green !important;
     padding: 20px !important;
     border-radius: 10px !important;
-    margin-left: 10px !important;
-}
-
-.icon__style>span>.MuiSvgIcon-root {
+    margin-left: 5px !important;
+  }
+  
+  .icon__style>span>.MuiSvgIcon-root {
     color: white !important;
-}
-
-.shortTitle {
-    color: gray;
-    font-size: 15px;
-}
-
-@media screen and (max-width: 768px) {
-    .shortTitle {
-        display: none;
-    }
-
+  }
+  
+  .card-title h6 {
+    margin: 0;
+  }
+  
+  @media screen and (max-width: 680px) {
     .body4__card {
-        width: 70%;
+      width: 120px;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      padding: 10px;
     }
-}
+  
+    .icon__style {
+      margin-left: 0 !important;
+      margin-bottom: 5px !important;
+      padding: 15px !important;
+    }
+  
+    .card-title h6 {
+      font-size: 12px;
+    }
+  }
+  
