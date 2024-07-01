@@ -6,6 +6,7 @@ import NotificationsActiveIcon from "@mui/icons-material/NotificationsActive";
 import ChatIcon from "@mui/icons-material/Chat";
 import SettingsIcon from "@mui/icons-material/Settings";
 import { Button } from "@mui/material";
+import logo from '../../assets/Logo.jpg'
 
 import './header.css'
 
@@ -21,7 +22,7 @@ const Header = () => {
     <div className="header">
       <div className="header-wrapper">
       <div className="left__header">
-            <img src="src\assets\Logo.jpg" alt="Logo" />
+            <img src={logo} alt="Logo" />
             <h5>𝐄𝐝𝐮 𝐇𝐮𝐛</h5>
           </div>
           <div className="right__header">
