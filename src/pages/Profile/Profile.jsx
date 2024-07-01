@@ -22,13 +22,15 @@ const Profile = () => {
           <h5>Your Profile Information</h5>
           <div className='profile_option'>
             <div className="option_wrapper">
+            
             <TransitionHooks title="User Details" 
-          content={<div>
-            <ul className='Option_list'>
-              <li><Link to="/ProfileEdit"> Edit Profile</Link></li>
-            </ul>
+              content={<div>
+                <ul className='Option_list'>
+                  <li><Link to="/ProfileEdit"> Edit Profile</Link></li>
+                </ul>
 
           </div>}/>
+
             </div>
           
           </div>
@@ -36,6 +38,8 @@ const Profile = () => {
         <div>
           <h5>Profile</h5>
           <div className="profile_info">
+
+            
             </div>
         </div>
 

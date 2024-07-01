@@ -4,16 +4,18 @@ import DashboardIcon from "@mui/icons-material/Dashboard";
 import PersonIcon from "@mui/icons-material/Person";
 import TouchAppIcon from "@mui/icons-material/TouchApp";
 import MessageIcon from "@mui/icons-material/Message";
+import MenuIcon from "@mui/icons-material/Menu";
 import SettingsApplicationsIcon from "@mui/icons-material/SettingsApplications";
 import ExitToAppIcon from "@mui/icons-material/ExitToApp";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
 import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
-import { Container, Typography, IconButton } from "@mui/material";
+import { Container, Button, IconButton,Divider } from "@mui/material";
 import { Link } from "react-router-dom";
 import CourseData from "./FakeData/CourseData";
 import Body4Card from "./Body4Card/Body4Card";
 import CourseCard from "./CourseCard/CourseCard";
+
 import "./dashboard.css";
 
 
@@ -23,22 +25,52 @@ const Dashboard = () => {
   const [end, setEnd] = useState(1);
   console.log(CourseData);
 
+  const [isSidebarExpanded, setSidebarExpanded] = useState(false);
 
+  const toggleSidebar = () => {
+    setSidebarExpanded(!isSidebarExpanded);
+  };
 
   return (
     <div className="dashboard">
-      <div className="left__sidebar__dashboard">
-        <Sidebar Icon={DashboardIcon} title="Dashboard" link="/" />
-        <Sidebar Icon={PersonIcon} title="Profile" link="/profile" />
-        <Sidebar Icon={TouchAppIcon} title="Grades" link="/grades" />
-        <Sidebar Icon={MessageIcon} title="Messages" link="/messages" />
-        <Sidebar
-          Icon={SettingsApplicationsIcon}
-          title="Preferences"
-          link="/preferences"
-        />
-        <Sidebar Icon={ExitToAppIcon} title="Logout" link="/Login" />
-      </div>
+      <div className="dashboard-wrapper">
+
+      <div
+          className={`left__sidebar__dashboard ${
+            isSidebarExpanded ? "expanded" : ""
+          }`}
+        >
+          <IconButton onClick={toggleSidebar} className="menu-button">
+            <MenuIcon sx={{ fontSize: 30 ,marginLeft:1}} />
+          </IconButton>
+          <Sidebar
+            Icon={DashboardIcon}
+            title="Dashboard"
+            link="/"
+            isSidebarExpanded={isSidebarExpanded}
+          />
+          <Sidebar
+            Icon={TouchAppIcon}
+            title="My Courses"
+            link="/My-Courses"
+            isSidebarExpanded={isSidebarExpanded}
+          />
+          <Divider component="div" />
+          <Sidebar
+            title="All Courses"
+            link="/All-Courses"
+            isSidebarExpanded={isSidebarExpanded}
+          />
+          <Divider component="div" />
+          <Sidebar
+            Icon={ExitToAppIcon}
+            title="Logout"
+            link="/Login"
+            isSidebarExpanded={isSidebarExpanded}
+          />
+        </div>
+      
+      
       <div className="main__body__dashboard">
         <Container>
           <div className="dashboard__header__name">
@@ -52,12 +84,7 @@ const Dashboard = () => {
         </Container>
 
         <div className="body_card_container">
-          <Body4Card
-            link="/messages"
-            shortTitle="Communicate"
-            title="Message"
-            Icon={MessageIcon}
-          />
+      
           <Body4Card
             link="/profile"
             shortTitle="Your Profile"
@@ -129,6 +156,8 @@ const Dashboard = () => {
               })}
           </div>
         </Container>
+      </div>
+
       </div>
     </div>
   );

@@ -10,7 +10,7 @@ import { Button } from "@mui/material";
 import './header.css'
 
 const Header = () => {
-  const user = { role: null };
+  const user = { role: "Teacher" };
   console.log(user.role);
   const [toggle, setToggle] = useState(false);
   const toggleClose = () => {
@@ -19,24 +19,46 @@ const Header = () => {
   
   return (
     <div className="header">
+      <div className="header-wrapper">
       <div className="left__header">
-        <Link>
-          <img src="src\assets\Logo.jpg" alt="Logo" />
-          <h5 style={{fontWeight:"600",}}>Edu-Hub</h5>
-        </Link>
-      </div>
-      <div
-        className={`middle__header ${
-          toggle ? `show__sidebar__nav` : `sidebar__nav`
-        }`}
-      >
+            <img src="src\assets\Logo.jpg" alt="Logo" />
+            <h5>𝐄𝐝𝐮 𝐇𝐮𝐛</h5>
+          </div>
+          <div className="right__header">
+          {user && user.role ? (
+              <>
+                <IconButton>
+                  <NotificationsActiveIcon />
+                </IconButton>
+                <IconButton>
+                  <SettingsIcon />
+                </IconButton>
+                <Link to="/profile">
+                  <Avatar>S</Avatar>
+                </Link>
+              </>
+          ) : (
+            <div className="right__header">
+              <Button className="login-button">
+              <NavLink to="/Login">Login</NavLink>
+            </Button>
+              <Button  className="regster-button">
+                <NavLink to="/Register">Register</NavLink>
+              </Button>
+            </div>
+          )}
+
+          </div>
+
+      
+      {/* <div className="lower-header">
         {user && (
           <ul>
             {user.role === "Teacher" && (
               <>
                 {" "}
                 <li>
-                    {/* to="/teacher-dashboard" */}
+                    to="/teacher-dashboard"
                   <NavLink onClick={toggleClose} >
                     Dashboard
                   </NavLink>
@@ -80,24 +102,14 @@ const Header = () => {
                   </NavLink>
                 </li>
                 <li>
-                  <NavLink onClick={toggleClose} to="/ucam">
-                    UCAM
-                  </NavLink>
-                </li>
-                <li>
                   <NavLink onClick={toggleClose} to="/library">
-                    LIBRARY
+                    My Courses
                   </NavLink>
                 </li>{" "}
               </>
             )}
             {user.role != null && (
                <>
-                <li>
-              <NavLink onClick={toggleClose} to="/profile">
-                Profile
-              </NavLink>
-            </li>
             <li>
               <NavLink onClick={toggleClose} to="/all-courses">
                 All Courses
@@ -108,38 +120,12 @@ const Header = () => {
             }
           </ul>
         )}
-      </div>
-
-      {user && user.role ? (
-        <div className="right__header">
-          <IconButton>
-            <VisibilityOffIcon />
-          </IconButton>
-          <IconButton>
-            <NotificationsActiveIcon />
-          </IconButton>
-          <IconButton>
-            <ChatIcon />
-          </IconButton>
-          <IconButton>
-            <SettingsIcon />
-          </IconButton>
-          <Link to="/profile">
-            <Avatar>S</Avatar>
-          </Link>
-        </div>
-      ) : (
-        <div className="Login_Register_Button">
-          <Button className="custom-button">
-          <NavLink to="/Login">Login</NavLink>
-        </Button>
-          <Button  className="custom-button">
-            <NavLink to="/Register">Register</NavLink>
-          </Button>
-        </div>
-      )}
+      </div> */}
 
       
+
+      
+      </div>
     </div>
   );
 };

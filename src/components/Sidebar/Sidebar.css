@@ -1,9 +1,13 @@
 .sidebar__dashboard__row {
+    margin-left: 2%;
+    background-color: white;
+}
+.sidebar-wrapper{
     display: flex;
+    width:100%;
     padding: 10px 10px;
     align-items: center;
-    margin-left: 5%;
-   
+    margin-left: 10%;
 }
 .sidebar__dashboard__row:hover {
     background-color: lightgray;
@@ -16,15 +20,19 @@
 }
 .sidebar_data{
     display: flex;
-        align-items: center;
+    align-items: center;
         
 }
 
-.sidebar__dashboard__row>a {
+.sidebar-wrapper>a {
     text-decoration: none;
     color: gray;
     display: flex;
+    justify-content:center;
+    align-items:center;
     font-size: 16px;
+    margin-top:15px;
+    gap:10px;
 }
 .sidebar__dashboard__row>a>.MuiSvgIcon-root {
     margin-right: 20px;
@@ -34,14 +42,15 @@
     color: white !important;
 }
 
-@media screen and (max-width: 1000px){
-    .sidebar__dashboard__row {
-        width: 180px;
-        padding: 10px 10px;
-        margin-left: 3%;
+@media screen and (max-width: 680px){
     
-    }
-    .sidebar__dashboard__row>a {
-        font-size: 15px;
+    .sidebar-wrapper>a {
+        text-decoration: none;
+        color: gray;
+        display: flex;
+        justify-content:center;
+        align-items:center;
+        font-size: 16px;
+        margin-left: 5%;
     }
 }
