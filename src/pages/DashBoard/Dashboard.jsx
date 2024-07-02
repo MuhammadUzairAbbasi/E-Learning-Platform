@@ -101,7 +101,7 @@ const Dashboard = () => {
             Icon={TouchAppIcon}
           />
           <Body4Card
-            link="/My-Courses"
+            link="/All-Courses"
             title="All Courses"
             Icon={TouchAppIcon}
           />
