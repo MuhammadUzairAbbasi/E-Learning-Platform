@@ -86,7 +86,7 @@ const Dashboard = () => {
         <div className="body_card_container">
       
           <Body4Card
-            link="/profile"
+            link="/Profile"
             title="Profile"
             Icon={AccountCircleIcon}
           />
