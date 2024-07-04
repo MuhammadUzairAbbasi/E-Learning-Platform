@@ -17,6 +17,9 @@ import Profile from "./pages/Profile/Profile";
 import CourseInfo from "./pages/CourseInfo/CourseInfo";
 import MyCourses from "./pages/My-Courses/MyCourses.jsx";
 import NotFound from "./pages/404NotFound/NotFound.jsx";
+import AdminCourses from "./pages/Admin/Course/AdminCourses.jsx";
+import AdminSidebar from "./pages/Admin/AdminDashboard/AdminSidebar/AdminSidebar.jsx";
+import AdminDashboard from "./pages/Admin/AdminDashboard/AdminDashboard.jsx";
 
 const App = () => {
   return (
@@ -43,6 +46,8 @@ const ConditionalRoutes = () => {
         <Route path="/profile" element={<Profile />} />
         <Route path="/my-courses" element={<MyCourses />} />
         <Route path="/course-info/:title" element={<CourseInfo />} />
+        <Route path="/admincourses" element={<AdminCourses />} />
+        <Route path="/admindashboard" element={<AdminDashboard />} / >
         <Route path="*" element={<Navigate to="/404" />} />
         <Route path="/404" element={<NotFound />} />
       </Routes>
