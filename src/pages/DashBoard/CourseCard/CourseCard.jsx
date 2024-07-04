@@ -1,19 +1,25 @@
-import React, { lazy } from "react";
-import { Link } from "react-router-dom";
-import { Button } from "@mui/material";
-import "./CourseCard.css";
+// CourseCard.js
+import React from 'react';
+import { useNavigate } from 'react-router-dom';
+import { Button } from '@mui/material';
+import './CourseCard.css';
 
-const CourseCard = ({title, name, id, img, date}) => {
-  console.log("Course Card props",title, name, id, img, date);
-  
+const CourseCard = ({ title, name, id, img, date, lectures }) => {
+  const navigate = useNavigate();
+  console.log("Course card",title, name, id, img, date, lectures);
+
+  const handleClick = () => {
+    navigate(`/course-info/${title}`, { state: { title, name, img, date, lectures } });
+  };
+
   return (
-    <div className="course__Card">
-      <Link className="container" to="">
-        <img className="image" src={img} alt="" />
+    <div className="course__Card" onClick={handleClick}>
+      <div className="container">
+        <img className="image" src={img} alt={title} />
         <div className="overlay">
           <p className="text">View</p>
         </div>
-      </Link>
+      </div>
       <div className="course__content">
         <span>{date}</span>
         <h5>{name}</h5>

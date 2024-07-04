@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import "./Sidebar.css";
 
-const Sidebar = ({ title, link, Icon, admin,isSidebarExpanded }) => {
+const Sidebar = ({ title, link, Icon,isSidebarExpanded }) => {
   return (
     <div className="sidebar__dashboard__row">
         <div className="sidebar-wrapper">

@@ -61,6 +61,12 @@ const Dashboard = () => {
             link="/All-Courses"
             isSidebarExpanded={isSidebarExpanded}
           />
+          <Sidebar
+            Icon={SettingsApplicationsIcon}
+            title="Settings"
+            link="/Settings"
+            isSidebarExpanded={isSidebarExpanded}
+          />
           <Divider component="div" />
           <Sidebar
             Icon={ExitToAppIcon}
@@ -68,13 +74,14 @@ const Dashboard = () => {
             link="/Login"
             isSidebarExpanded={isSidebarExpanded}
           />
+          
         </div>
       
       
       <div className="main__body__dashboard">
         <Container>
           <div className="dashboard__header__name">
-            <h2  className="dashboard__name">{user && user.userName}</h2>
+            <h2  className="dashboard__name text-2xl font-semibold">{user && user.userName}</h2>
             <Link to="/">
               <div className="dashboard_link">
                 <h3>Dashboard</h3>
@@ -109,7 +116,7 @@ const Dashboard = () => {
         <Container>
           
           <div className="recent_courses ">
-            <h4 className="recent_courses_header">
+            <h4 className="recent_courses_header text-lg font-semibold">
             Recently accessed courses
             </h4>
             <div className="recent_courses_button">
@@ -142,7 +149,7 @@ const Dashboard = () => {
               </IconButton>
             </div>
           </div>
-          <div className="recent_courseData">
+          <div className="recent_courseData mt-3 ">
             {CourseData.length > 0 &&
               CourseData.slice(start,end).map((val, index) => {
                 console.log(val,index);
@@ -154,6 +161,7 @@ const Dashboard = () => {
                       id={index}
                       img={val.thumbnail}
                       date={val.date}
+                      lectures={val.lectures}
                     />
                   </div>
                 );
