@@ -18,7 +18,8 @@ import CourseInfo from "./pages/CourseInfo/CourseInfo";
 import MyCourses from "./pages/My-Courses/MyCourses.jsx";
 import NotFound from "./pages/404NotFound/NotFound.jsx";
 import AdminCourses from "./pages/Admin/Course/AdminCourses.jsx";
-import AdminSidebar from "./pages/Admin/AdminDashboard/AdminSidebar/AdminSidebar.jsx";
+import StudentInfo from "./pages/Admin/Student/StudentInfo.jsx"
+// import AdminSidebar from "./pages/Admin/AdminDashboard/AdminSidebar/AdminSidebar.jsx";
 import AdminDashboard from "./pages/Admin/AdminDashboard/AdminDashboard.jsx";
 
 const App = () => {
@@ -33,6 +34,7 @@ const App = () => {
 
 const ConditionalRoutes = () => {
   const location = useLocation();
+
   const isNotFound = location.pathname === '/404';
 
   return (
@@ -48,6 +50,7 @@ const ConditionalRoutes = () => {
         <Route path="/course-info/:title" element={<CourseInfo />} />
         <Route path="/admincourses" element={<AdminCourses />} />
         <Route path="/admindashboard" element={<AdminDashboard />} / >
+        <Route path="/adminstudentinfo" element={<StudentInfo />} />
         <Route path="*" element={<Navigate to="/404" />} />
         <Route path="/404" element={<NotFound />} />
       </Routes>

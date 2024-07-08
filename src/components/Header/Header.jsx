@@ -11,7 +11,7 @@ import logo from "../../assets/Logo.jpg";
 import "./header.css";
 
 const Header = () => {
-  const user = { role: "Teacher" };
+  const user = { role: "Student" };
   console.log(user.role);
   const [toggle, setToggle] = useState(false);
   const toggleClose = () => {

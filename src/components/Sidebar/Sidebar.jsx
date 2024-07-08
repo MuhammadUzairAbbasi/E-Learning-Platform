@@ -7,7 +7,7 @@ const Sidebar = ({ title, link, Icon,isSidebarExpanded }) => {
     <div className="sidebar__dashboard__row">
         <div className="sidebar-wrapper">
           <Link to={link} className="sidebar_data">
-            {Icon && <Icon />}
+            {Icon && <Icon style={{fontSize:30}}/>}
             {isSidebarExpanded &&<span>{title}</span>}
           </Link>
         </div>

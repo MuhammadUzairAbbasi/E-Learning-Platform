@@ -1,5 +1,6 @@
 .header {
-  box-shadow: 10px 10px 10px 1px rgba(128, 128, 128, 0.185);
+  box-shadow: 10px 10px 10px 1px rgba(199, 198, 198, 0.377);
+  background-color: white;
   position: sticky;
   top: 0%;
   padding: 5px 5px;
@@ -19,13 +20,13 @@
   gap: 5px;
 }
 .left__header > img {
-  height: 65px;
+  height: 50px;
   object-fit: contain;
  
 }
 .left__header > h5 {
   font-size:40px;
-  font-weight:600;
+  font-weight:500;
 }
 
 .right__header {

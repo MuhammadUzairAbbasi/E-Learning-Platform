@@ -2,9 +2,10 @@ import React from "react";
 import { IconButton, Divider } from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
 import DashboardIcon from "@mui/icons-material/Dashboard";
-import TouchAppIcon from "@mui/icons-material/TouchApp";
 import SettingsApplicationsIcon from "@mui/icons-material/SettingsApplications";
 import ExitToAppIcon from "@mui/icons-material/ExitToApp";
+import AssignmentIcon from "@mui/icons-material/Assignment"; // Icon for "My Courses"
+import LibraryBooksIcon from "@mui/icons-material/LibraryBooks";
 import Sidebar from "../../components/Sidebar/Sidebar";
 
 const StudentSidebar = ({ isSidebarExpanded, toggleSidebar }) => {
@@ -14,8 +15,8 @@ const StudentSidebar = ({ isSidebarExpanded, toggleSidebar }) => {
         isSidebarExpanded ? "expanded" : ""
       }`}
     >
-      <IconButton onClick={toggleSidebar} className="menu-button">
-        <MenuIcon sx={{ fontSize: 30, marginLeft: 1 }} />
+      <IconButton onClick={toggleSidebar}>
+        <MenuIcon sx={{ fontSize: 40 }} />
       </IconButton>
       <Sidebar
         Icon={DashboardIcon}
@@ -24,13 +25,14 @@ const StudentSidebar = ({ isSidebarExpanded, toggleSidebar }) => {
         isSidebarExpanded={isSidebarExpanded}
       />
       <Sidebar
-        Icon={TouchAppIcon}
+        Icon={AssignmentIcon}
         title="My Courses"
         link="/My-Courses"
         isSidebarExpanded={isSidebarExpanded}
       />
       <Divider component="div" />
       <Sidebar
+        Icon={LibraryBooksIcon}
         title="All Courses"
         link="/All-Courses"
         isSidebarExpanded={isSidebarExpanded}

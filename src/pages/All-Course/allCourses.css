@@ -1,14 +1,28 @@
+/* allCourses.css */
 .all-courses {
   display: flex;
+  overflow:hidden;
 }
 
 .main-content {
   flex: 1;
-  margin-left: 60px; /* Adjust according to the sidebar width */
-  transition: margin-left 0.3s ease;
-  padding: 20px; /* Add padding to avoid content being too close to the edge */
+  margin-left: 10%;
+  margin-right: 10%; /* Adjust based on sidebar width */
+  transition: margin-left 0.3s ease, margin-right 0.3s ease;
+  overflow-y: auto; /* Add vertical scrollbar to the main content */
+  overflow-x:hidden;
+  width: 80%; /* Main content takes up 80% of the width */
+  height: calc(100vh - 60px); /* Adjust based on header height */
+  scrollbar-width: 5px; /* "auto" or "thin" */
+  scrollbar-color: rgba(0, 0, 0, 0.2) transparent; /* thumb color, track color */
 }
 
-.main-content.expanded {
-  margin-left: 200px; /* Adjust according to the expanded sidebar width */
+/* WebKit Browsers (Chrome, Safari, Edge) */
+.main-content::-webkit-scrollbar {
+  width: 0; /* Adjust the width here */
+}
+
+.main-content::-webkit-scrollbar-thumb {
+  background-color: rgba(0, 0, 0, 0.2);
+  border-radius: 20px;
 }

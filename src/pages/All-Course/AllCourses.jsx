@@ -17,7 +17,7 @@ const AllCourses = () => {
         isSidebarExpanded={isSidebarExpanded}
         toggleSidebar={toggleSidebar}
       />
-      <div className={`main-content`}>
+      <div className="main-content">
         <Container>
           <Typography className="text-center my-3 border-bottom" variant="h3" color="primary">
             All Courses

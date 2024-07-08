@@ -15,7 +15,7 @@ const AdminSidebar = ({ isSidebarExpanded, toggleSidebar }) => {
       }`}
     >
       <IconButton onClick={toggleSidebar} className="menu-button">
-        <MenuIcon sx={{ fontSize: 35, marginLeft: 1,marginTop:3 }} />
+        <MenuIcon sx={{ fontSize: 40}} />
       </IconButton>
       <Sidebar
         Icon={DashboardIcon}
@@ -32,7 +32,7 @@ const AdminSidebar = ({ isSidebarExpanded, toggleSidebar }) => {
       <Sidebar
         Icon={GroupIcon}
         title="Student"
-        link="/adminstudent"
+        link="/adminstudentinfo"
         isSidebarExpanded={isSidebarExpanded}
       />
       <Divider component="div" />

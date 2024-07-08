@@ -1,34 +1,52 @@
 .dashboard {
   background-color: #f7f7f7;
   width: 100%;
+  height: calc(100vh - 60px); /* Adjust based on header height */
+  overflow: hidden; /* Prevent main page scrollbar */
 }
 
 .dashboard-wrapper {
-  width: 100%;
   display: flex;
-  justify-content: flex-start;
-
+  width: 100%;
+  height: calc(100vh - 60px); /* Adjust based on header height */
 }
 
 .left__sidebar__dashboard {
   box-shadow: 0px 5px 22px -13px grey;
-  position: absolute;
+  background-color: white;
+  position: fixed; /* Change to fixed to keep it in place */
   z-index: 1000;
   transition: width 0.3s ease;
-  width: 60px;
+  overflow: hidden;
+  border-radius: 10px;
+  margin-top: 5px;
+  width: 30%; /* Sidebar takes up 30% of the width */
+  height: calc(100vh - 70px); /* Adjust based on header height */
 }
 
 .left__sidebar__dashboard.expanded {
-  width: 200px;
+  width: 30%; /* Adjusted for expanded sidebar */
 }
 
 .main__body__dashboard {
   flex: 1;
-  position: relative;
-  margin-left: 40px;
-  padding-right: 20px;
-  padding-left: 20px;
+  margin-left: 10%;
+  margin-right: 10%; /* Adjust based on sidebar width */
   transition: margin-left 0.3s ease;
+  transition: margin-right 0.3s ease;
+  overflow-y: scroll; /* Add vertical scrollbar to the main content */
+  width: 80%; /* Main content takes up 70% of the width */
+  height: calc(100vh - 60px); /* Adjust based on header height */
+  scrollbar-width:thin;
+  scrollbar-color: rgba(0, 0, 0, 0.2) transparent; /* thumb color, track color */
+}
+.main__body__dashboard::-webkit-scrollbar {
+  width: 20px;
+}
+
+.main__body__dashboard::-webkit-scrollbar-thumb {
+  background-color: rgba(0, 0, 0, 0.2);
+  border-radius: 10px;
 }
 
 .dashboard__header__name {
@@ -39,12 +57,12 @@
   padding: 10px;
 }
 
-.dashboard_link>h3 {
+.dashboard_link > h3 {
   font-size: 30px;
 }
 
 .recent_courses {
-  background-color: #E1E6EF;
+  background-color: #e1e6ef;
   display: flex;
   border-radius: 10px;
   justify-content: space-between;
@@ -54,7 +72,7 @@
 }
 
 .recent_courses_header {
-    margin-left: 20px;
+  margin-left: 20px;
 }
 
 .recent_courses_button {
@@ -67,61 +85,62 @@
   flex-wrap: wrap;
   justify-content: center;
   gap: 30px;
-  /* margin-top: 3%; */
 }
 
-/* module.css */
 .dashboard__header__name {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background-color: #E1E6EF;
+  background-color: #e1e6ef;
   border-radius: 10px;
   padding: 10px 20px;
   margin: 35px 0px;
 }
 
-.dashboard__header__name>h2 {
+.dashboard__header__name > h2 {
   margin-top: 5px;
 }
 
-.dashboard__header__name>a {
+.dashboard__header__name > a {
   color: rgba(0, 0, 0, 0.603);
   text-decoration: none;
 }
 
-.dashboard__header__name>a:hover {
+.dashboard__header__name > a:hover {
   color: rgb(0, 0, 0);
-
 }
 
 @media screen and (max-width: 680px) {
-
-  .dashboard_link>h3 {
+  .dashboard_link > h3 {
     font-size: 20px;
     text-align: center;
   }
 
   .recent_courses {
     justify-content: center;
-    padding:10px 0;
-
+    padding: 10px 0;
   }
-  
+
   .recent_courses_header {
     font-size: 17px;
-      margin-left: 10px;
+    margin-left: 10px;
   }
+
   .recent_courses_button {
     margin-top: 10px;
   }
 
   .body_card_container {
     gap: 10px;
-
   }
 
   .dashboard__header__name {
     margin: 20px 0px;
+  }
+  .main__body__dashboard {
+    margin-left: 20%;
+    margin-right: 5%;
+    overflow-y: scroll; /* Ensure content is scrollable */
+    scrollbar-width: none; /* Hide scrollbar on smaller screens */
   }
 }
