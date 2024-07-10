@@ -1,28 +1,28 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
+import './CardOfMyCourse.css'; // Import the CSS file
 
 const CardOfMyCourse = ({ courses }) => {
   const navigate = useNavigate();
-  console.log("Card of Course", courses);
 
   return (
-    <div className="container mx-auto px-4">
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+    <div className="course-container">
+      <div className="course-grid">
         {courses.map((course, index) => (
           <div
             key={index}
-            className="flex flex-col bg-white rounded-lg shadow-md overflow-hidden"
+            className="course-card"
           >
             <img
               src={course.thumbnail}
               alt={course.name}
-              className="h-36 w-full object-cover"
+              className="course-image"
             />
-            <div className="flex flex-col flex-grow p-4">
-              <h2 className="text-lg font-semibold mb-2">{course.name}</h2>
-              <p className="text-gray-600 mb-4">{course.description}</p>
-              <div className="mt-auto">
-                <p className="text-gray-600 mb-2">
+            <div className="course-content">
+              <h2 className="course-title">{course.name}</h2>
+              <p className="course-description">{course.description}</p>
+              <div className="course-details">
+                <p className="course-lectures">
                   Lectures: {course.lectures.length}
                 </p>
                 <button
@@ -31,13 +31,13 @@ const CardOfMyCourse = ({ courses }) => {
                       state: {
                         title: course.title,
                         name: course.name,
-                        img: course.img, // Assuming course.img is defined in your data
-                        date: course.date, // Assuming course.date is defined in your data
-                        lectures: course.lectures, // Assuming course.lectures is defined in your data
+                        img: course.img,
+                        date: course.date,
+                        lectures: course.lectures,
                       },
                     });
                   }}
-                  className="w-full bg-blue-500 text-white py-2 rounded-md hover:bg-blue-600"
+                  className="course-button"
                 >
                   Go to Course
                 </button>

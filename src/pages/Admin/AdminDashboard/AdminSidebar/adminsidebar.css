@@ -1,0 +1,17 @@
+.left__sidebar__dashboard {
+    box-shadow: 0px 5px 22px -13px grey;
+    background-color: white;
+    position: fixed; 
+    z-index: 1000;
+    transition: width 0.3s ease;
+    overflow: hidden;
+    border-radius: 10px;
+    margin-top: 5px;
+    width: 4%; 
+    height: calc(100vh - 70px); 
+  }
+  
+  .left__sidebar__dashboard.expanded {
+    width: 15%; 
+  }
+  

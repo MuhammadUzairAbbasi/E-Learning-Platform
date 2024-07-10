@@ -1,28 +1,56 @@
-/* allCourses.css */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
+
 .all-courses {
   display: flex;
-  overflow:hidden;
+  flex-direction: column; /* Display columns on smaller screens */
+  width: 100%;
+  height: calc(100vh - 60px); /* Adjust height as needed */
 }
 
-.main-content {
+.allcourses-main-content {
   flex: 1;
-  margin-left: 10%;
-  margin-right: 10%; /* Adjust based on sidebar width */
-  transition: margin-left 0.3s ease, margin-right 0.3s ease;
-  overflow-y: auto; /* Add vertical scrollbar to the main content */
-  overflow-x:hidden;
-  width: 80%; /* Main content takes up 80% of the width */
-  height: calc(100vh - 60px); /* Adjust based on header height */
-  scrollbar-width: 5px; /* "auto" or "thin" */
-  scrollbar-color: rgba(0, 0, 0, 0.2) transparent; /* thumb color, track color */
+  margin: 20px 10%; /* Adjust margins for smaller screens */
 }
 
-/* WebKit Browsers (Chrome, Safari, Edge) */
-.main-content::-webkit-scrollbar {
-  width: 0; /* Adjust the width here */
+.allcourses-heading-container {
+  margin: 20px 0;
+  padding: 10px;
+  background-color: #f0f0f0;
+  border-radius: 8px;
 }
 
-.main-content::-webkit-scrollbar-thumb {
-  background-color: rgba(0, 0, 0, 0.2);
-  border-radius: 20px;
+.heading {
+  margin-left: 10px;
+  font-family: 'Poppins', sans-serif;
+}
+
+.allcourses-card-container {
+  flex: 1;
+  overflow-y: auto;
+  height: calc(100vh - 200px); /* Adjust height for smaller screens */
+}
+
+.course-container {
+  display: flex;
+  justify-content: center;
+  overflow-y: auto; /* Enable vertical scrolling */
+  height: calc(100% - 20px); /* Adjust height as needed */
+  padding: 20px;
+}
+
+@media (max-width: 768px) {
+  .all-courses {
+    height: auto; /* Remove fixed height on smaller screens */
+  }
+
+  .allcourses-main-content {
+    margin: 20px 0 20px 60px;
+     /* Adjust margins for smaller screens */
+  }
+
+  .allcourses-card-container {
+    height: auto;
+    /* Remove fixed height on smaller screens */
+  }
+
 }

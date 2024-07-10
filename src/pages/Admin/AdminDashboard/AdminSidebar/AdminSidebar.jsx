@@ -6,6 +6,7 @@ import ExitToAppIcon from "@mui/icons-material/ExitToApp";
 import LocalLibraryIcon from '@mui/icons-material/LocalLibrary';
 import GroupIcon from '@mui/icons-material/Group';
 import Sidebar from "../../../../components/Sidebar/Sidebar";
+import './adminsidebar.css'
 
 const AdminSidebar = ({ isSidebarExpanded, toggleSidebar }) => {
   return (

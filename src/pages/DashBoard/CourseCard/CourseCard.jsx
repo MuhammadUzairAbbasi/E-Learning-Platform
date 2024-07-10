@@ -1,12 +1,10 @@
-// CourseCard.js
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Button } from '@mui/material';
+import { LinearProgress } from '@mui/material';
 import './CourseCard.css';
 
-const CourseCard = ({ title, name, id, img, date, lectures }) => {
+const CourseCard = ({ title, name, id, img, date, lectures, progress }) => {
   const navigate = useNavigate();
-  console.log("Course card",title, name, id, img, date, lectures);
 
   const handleClick = () => {
     navigate(`/course-info/${title}`, { state: { title, name, img, date, lectures } });
@@ -21,17 +19,11 @@ const CourseCard = ({ title, name, id, img, date, lectures }) => {
         </div>
       </div>
       <div className="course__content">
-        <span>{date}</span>
-        <h5>{name}</h5>
-        <h5>{title}</h5>
-        <Button color="primary" variant="contained">
-          Published
-        </Button>
-        <br />
-        <span>
-          This is a course template which is to be used as the course kit for
-          the teachers.
-        </span>
+        <span className="date">{date}</span>
+        <h5 className="title">{title}</h5>
+        <h5 className="name">{name}</h5>
+        <LinearProgress variant="determinate" value={progress} className="progress-bar" />
+        <span className="progress-text">{progress}% complete</span>
       </div>
     </div>
   );
