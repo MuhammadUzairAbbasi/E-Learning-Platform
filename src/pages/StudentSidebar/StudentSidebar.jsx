@@ -6,7 +6,9 @@ import SettingsApplicationsIcon from "@mui/icons-material/SettingsApplications";
 import ExitToAppIcon from "@mui/icons-material/ExitToApp";
 import AssignmentIcon from "@mui/icons-material/Assignment"; // Icon for "My Courses"
 import LibraryBooksIcon from "@mui/icons-material/LibraryBooks";
+import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import Sidebar from "../../components/Sidebar/Sidebar";
+import './studentsidebar.css'
 
 const StudentSidebar = ({ isSidebarExpanded, toggleSidebar }) => {
   return (
@@ -27,14 +29,20 @@ const StudentSidebar = ({ isSidebarExpanded, toggleSidebar }) => {
       <Sidebar
         Icon={AssignmentIcon}
         title="My Courses"
-        link="/My-Courses"
+        link="/mycourses"
         isSidebarExpanded={isSidebarExpanded}
       />
       <Divider component="div" />
       <Sidebar
         Icon={LibraryBooksIcon}
         title="All Courses"
-        link="/All-Courses"
+        link="/allcourses"
+        isSidebarExpanded={isSidebarExpanded}
+      />
+      <Sidebar
+        Icon={AccountCircleIcon}
+        title="Profile"
+        link="/profile"
         isSidebarExpanded={isSidebarExpanded}
       />
       <Sidebar

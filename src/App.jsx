@@ -44,10 +44,10 @@ const ConditionalRoutes = () => {
         <Route path="/" element={<Dashboard />} />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
-        <Route path="/all-courses" element={<AllCourses />} />
+        <Route path="/allcourses" element={<AllCourses />} />
         <Route path="/profile" element={<Profile />} />
-        <Route path="/my-courses" element={<MyCourses />} />
-        <Route path="/course-info/:title" element={<CourseInfo />} />
+        <Route path="/mycourses" element={<MyCourses />} />
+        <Route path="/courseinfo/:title" element={<CourseInfo />} />
         <Route path="/admincourses" element={<AdminCourses />} />
         <Route path="/admindashboard" element={<AdminDashboard />} / >
         <Route path="/adminstudentinfo" element={<StudentInfo />} />

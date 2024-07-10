@@ -1,0 +1,45 @@
+/* General Styling */
+.relative {
+    position: relative;
+  }
+  
+  .flex {
+    display: flex;
+  }
+  
+  /* Sidebar Styling */
+  /* .sidebar {
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 60px; /* Assuming the sidebar width is 60px 
+  } */
+  
+  /* Main Content Styling */
+  .main-content {
+    margin-left: 60px; /* Match the width of the sidebar */
+    width: 100%;
+    height: calc(100vh - 60px); /* Height calculation */
+    overflow: auto; /* Scroll if content exceeds height */
+  }
+  
+  .container {
+    max-width: 100%;
+    padding: 20px; /* Optional padding */
+  }
+  
+  .heading {
+    font-size: 2rem;
+    text-align: center;
+    font-weight: bold;
+    margin-bottom: 20px;
+  }
+  
+  .content-wrapper {
+    background-color: #fff;
+    padding: 16px;
+    border: 1px solid #e5e7eb;
+    height: 100%;
+  }
+  

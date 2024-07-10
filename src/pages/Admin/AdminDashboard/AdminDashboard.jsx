@@ -14,8 +14,8 @@ const AdminDashboard = () => {
   };
 
   return (
-    <div className="dashboard">
-      <div className="dashboard-wrapper">
+    <div className="admindashboard">
+      <div className="admindashboard-wrapper">
         <AdminSidebar
           isSidebarExpanded={isSidebarExpanded}
           toggleSidebar={toggleSidebar}

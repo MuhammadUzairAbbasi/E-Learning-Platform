@@ -1,4 +1,4 @@
-import { Container, Typography } from '@mui/material';
+import { Container, Typography, Box } from '@mui/material';
 import React, { useState } from 'react';
 import CardOfMyCourse from './cardOfCourse/CardOfMyCourse';
 import CourseData from "../DashBoard/FakeData/CourseData";
@@ -18,12 +18,18 @@ const MyCourses = () => {
         isSidebarExpanded={isSidebarExpanded}
         toggleSidebar={toggleSidebar}
       />
-      <div className={`main-content`}>
+      <div className="mycourses-main-content">
         <Container>
-          <Typography className="text-center my-3 border-bottom" variant="h3" color="primary">
-            My Courses
-          </Typography>
-          <CardOfMyCourse courses={CourseData} />
+          <Box className="heading-container">
+            <Typography className="text-left heading" variant="h3" color="primary">
+              My Courses
+            </Typography>
+          </Box>
+          <div className="card-container">
+            {CourseData.map((course, index) => (
+              <CardOfMyCourse key={index} course={course} />
+            ))}
+          </div>
         </Container>
       </div>
     </div>

@@ -1,0 +1,79 @@
+.course-container {
+  display: flex;
+  justify-content: center;
+  overflow-y: auto; /* Enable vertical scrolling */
+  height: 100%; /* Full height of the viewport */
+  padding: 20px;
+}
+
+.course-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: center;
+}
+
+.course-card {
+  display: flex;
+  flex-direction: column;
+  background-color: white;
+  border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  width: calc(50% - 20px); /* Adjust width as needed */
+  max-width: 300px; /* Maximum width of each card */
+  margin: 10px; /* Increase margin for spacing */
+}
+
+.course-image {
+  height: 150px; /* Reduce height */
+  width: 100%;
+  object-fit: cover;
+}
+
+.course-content {
+  display: flex;
+  flex-direction: column;
+  padding: 15px;
+  flex-grow: 1;
+}
+
+.course-title {
+  font-size: 1.2rem; /* Decrease font size */
+  font-weight: bold;
+  margin-bottom: 8px; /* Adjust margin */
+}
+
+.course-description {
+  color: gray;
+  margin-bottom: 10px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 3; /* Limit to 3 lines */
+  -webkit-box-orient: vertical;
+}
+
+.course-details {
+  margin-top: auto;
+}
+
+.course-lectures {
+  color: gray;
+  margin-bottom: 8px; /* Adjust margin */
+}
+
+.course-button {
+  width: 100%;
+  background-color: #007bff;
+  color: white;
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.course-button:hover {
+  background-color: #0056b3;
+}

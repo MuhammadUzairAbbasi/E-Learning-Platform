@@ -83,6 +83,86 @@ const courseData = [
         "pdf": "path/to/express_basics.pdf"
       }
     ]
+  },
+  {
+    "title": "NODE401",
+    "name": "Node.js and Express.js",
+    "thumbnail": node_express,
+    "date": "July-Nov 2023",
+    "lectures": [
+      {
+        "id": 7,
+        "title": "Lecture 1: Introduction to Node.js",
+        "description": "Overview of Node.js, installation, and basic concepts.",
+        "pdf": "path/to/intro_to_node.pdf"
+      },
+      {
+        "id": 8,
+        "title": "Lecture 2: Express.js Basics",
+        "description": "Getting started with Express.js, routing, and middleware.",
+        "pdf": "path/to/express_basics.pdf"
+      }
+    ]
+  },
+  {
+    "title": "NODE401",
+    "name": "Node.js and Express.js",
+    "thumbnail": node_express,
+    "date": "July-Nov 2023",
+    "lectures": [
+      {
+        "id": 7,
+        "title": "Lecture 1: Introduction to Node.js",
+        "description": "Overview of Node.js, installation, and basic concepts.",
+        "pdf": "path/to/intro_to_node.pdf"
+      },
+      {
+        "id": 8,
+        "title": "Lecture 2: Express.js Basics",
+        "description": "Getting started with Express.js, routing, and middleware.",
+        "pdf": "path/to/express_basics.pdf"
+      }
+    ]
+  },
+  {
+    "title": "NODE401",
+    "name": "Node.js and Express.js",
+    "thumbnail": node_express,
+    "date": "July-Nov 2023",
+    "lectures": [
+      {
+        "id": 7,
+        "title": "Lecture 1: Introduction to Node.js",
+        "description": "Overview of Node.js, installation, and basic concepts.",
+        "pdf": "path/to/intro_to_node.pdf"
+      },
+      {
+        "id": 8,
+        "title": "Lecture 2: Express.js Basics",
+        "description": "Getting started with Express.js, routing, and middleware.",
+        "pdf": "path/to/express_basics.pdf"
+      }
+    ]
+  },
+  {
+    "title": "NODE401",
+    "name": "Node.js and Express.js",
+    "thumbnail": node_express,
+    "date": "July-Nov 2023",
+    "lectures": [
+      {
+        "id": 7,
+        "title": "Lecture 1: Introduction to Node.js",
+        "description": "Overview of Node.js, installation, and basic concepts.",
+        "pdf": "path/to/intro_to_node.pdf"
+      },
+      {
+        "id": 8,
+        "title": "Lecture 2: Express.js Basics",
+        "description": "Getting started with Express.js, routing, and middleware.",
+        "pdf": "path/to/express_basics.pdf"
+      }
+    ]
   }
 ];
 
