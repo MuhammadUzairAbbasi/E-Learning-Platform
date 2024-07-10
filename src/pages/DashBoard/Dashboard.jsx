@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Container } from "@mui/material";
+import { Container ,Typography ,Box } from "@mui/material";
 import { Link } from "react-router-dom";
 import CourseData from "./FakeData/CourseData";
 import CourseCard from "./CourseCard/CourseCard";
@@ -23,7 +23,16 @@ const Dashboard = () => {
         />
         <div className="main__body__dashboard">
           <Container>
-            <div className="dashboard__header__name">
+            <Box className="dashboard-header">
+            <Typography sx={{'fontWeight':600}} className="text-left heading" variant="h4" color="primary">
+              {user && user.userName}
+            </Typography>
+            <Typography className="text-right heading dashboard-link" variant="h4" color="primary">
+              Dashboard
+            </Typography>
+            
+          </Box>
+            {/* <div className="dashboard__header__name">
               <h2 className="dashboard__name text-2xl font-semibold">
                 {user && user.userName}
               </h2>
@@ -32,13 +41,12 @@ const Dashboard = () => {
                   <h3>Dashboard</h3>
                 </div>
               </Link>
-            </div>
+            </div> */}
           </Container>
           <Container>
             <div className="course__container">
               {CourseData.map((course, index) => (
-                <div key={index} className="course__wrapper">
-                  <CourseCard
+                <CourseCard
                     title={course.title}
                     name={course.name}
                     img={course.thumbnail}
@@ -46,7 +54,6 @@ const Dashboard = () => {
                     lectures={course.lectures}
                     progress={course.progress}
                   />
-                </div>
               ))}
             </div>
           </Container>

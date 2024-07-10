@@ -1,7 +1,7 @@
-import { Container, Typography, Box } from '@mui/material';
 import React, { useState } from 'react';
+import { Container, Typography, Box } from '@mui/material';
 import CardOfMyCourse from './cardOfCourse/CardOfMyCourse';
-import CourseData from "../DashBoard/FakeData/CourseData";
+import CourseData from '../DashBoard/FakeData/CourseData';
 import StudentSidebar from '../StudentSidebar/StudentSidebar';
 import './myCourses.css';
 
@@ -21,7 +21,7 @@ const MyCourses = () => {
       <div className="mycourses-main-content">
         <Container>
           <Box className="heading-container">
-            <Typography className="text-left heading" variant="h3" color="primary">
+            <Typography sx={{'fontWeight':600}} className="text-left heading" variant="h4" color="primary">
               My Courses
             </Typography>
           </Box>

@@ -1,36 +1,28 @@
-.course-container {
-  display: flex;
-  justify-content: center;
-  overflow-y: auto; /* Enable vertical scrolling */
-  height: 100%; /* Full height of the viewport */
-  padding: 20px;
-}
-
-.course-grid {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 20px;
-  justify-content: center;
-}
-
+/* Card container */
 .course-card {
   display: flex;
   flex-direction: column;
-  background-color: white;
+  background-color: #ffffff;
   border-radius: 10px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
   overflow: hidden;
-  width: calc(50% - 20px); /* Adjust width as needed */
-  max-width: 300px; /* Maximum width of each card */
-  margin: 10px; /* Increase margin for spacing */
+  margin-bottom: 20px;
+  /* Adjust spacing between cards */
+  width: 280px;
+  margin: 1%;
 }
 
+/* Course image */
 .course-image {
-  height: 150px; /* Reduce height */
+  height: 150px;
+  /* Reduced height for the course thumbnail */
   width: 100%;
   object-fit: cover;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
 }
 
+/* Course content */
 .course-content {
   display: flex;
   flex-direction: column;
@@ -38,35 +30,40 @@
   flex-grow: 1;
 }
 
+/* Course title */
 .course-title {
-  font-size: 1.2rem; /* Decrease font size */
+  font-size: 1.1rem;
+  /* Adjusted font size for the title */
   font-weight: bold;
-  margin-bottom: 8px; /* Adjust margin */
-}
-
-.course-description {
-  color: gray;
   margin-bottom: 10px;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  display: -webkit-box;
-  -webkit-line-clamp: 3; /* Limit to 3 lines */
-  -webkit-box-orient: vertical;
 }
 
+/* Course description */
+.course-description {
+  color: #6c757d;
+  margin-bottom: 15px;
+  font-size: 0.9rem;
+  /* Adjusted font size for the description */
+}
+
+/* Course details */
 .course-details {
   margin-top: auto;
 }
 
+/* Number of lectures */
 .course-lectures {
-  color: gray;
-  margin-bottom: 8px; /* Adjust margin */
+  color: #6c757d;
+  margin-bottom: 10px;
+  font-size: 0.9rem;
+  /* Adjusted font size for the lecture count */
 }
 
+/* Go to Course button */
 .course-button {
   width: 100%;
   background-color: #007bff;
-  color: white;
+  color: #ffffff;
   padding: 10px;
   border: none;
   border-radius: 5px;
@@ -76,4 +73,11 @@
 
 .course-button:hover {
   background-color: #0056b3;
+}
+
+@media (max-width: 768px) {
+  .course-card {
+      width: 250px;
+     
+    }
 }

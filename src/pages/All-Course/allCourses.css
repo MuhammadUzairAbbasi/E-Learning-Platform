@@ -2,18 +2,16 @@
 
 .all-courses {
   display: flex;
-  flex-direction: column; /* Display columns on smaller screens */
-  width: 100%;
-  height: calc(100vh - 60px); /* Adjust height as needed */
+    width: 100%;
+    height: calc(100vh - 60px);
 }
 
 .allcourses-main-content {
-  flex: 1;
-  margin: 20px 10%; /* Adjust margins for smaller screens */
+  margin: 5px 10%;
 }
 
 .allcourses-heading-container {
-  margin: 20px 0;
+margin: 5px 0 15px 0;
   padding: 10px;
   background-color: #f0f0f0;
   border-radius: 8px;
@@ -25,32 +23,28 @@
 }
 
 .allcourses-card-container {
-  flex: 1;
-  overflow-y: auto;
-  height: calc(100vh - 200px); /* Adjust height for smaller screens */
+  display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+    overflow-y: auto;
+    max-height: calc(100vh - 180px);
+    padding-right: 20px;
 }
 
-.course-container {
-  display: flex;
-  justify-content: center;
-  overflow-y: auto; /* Enable vertical scrolling */
-  height: calc(100% - 20px); /* Adjust height as needed */
-  padding: 20px;
+@media (max-width: 1024px) {
+  .allcourses-card-container {
+    justify-content: space-between; /* Adjust alignment as needed */
+  }
 }
 
 @media (max-width: 768px) {
-  .all-courses {
-    height: auto; /* Remove fixed height on smaller screens */
-  }
-
   .allcourses-main-content {
-    margin: 20px 0 20px 60px;
-     /* Adjust margins for smaller screens */
+    margin: 20px 10px 20px 15%;
   }
 
   .allcourses-card-container {
-    height: auto;
-    /* Remove fixed height on smaller screens */
+  justify-content: center;
+    padding-right: 0;
   }
-
 }

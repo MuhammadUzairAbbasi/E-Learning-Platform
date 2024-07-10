@@ -2,187 +2,71 @@
   box-shadow: 10px 10px 10px 1px rgba(199, 198, 198, 0.377);
   background-color: white;
   position: sticky;
-  top: 0%;
+  top: 0;
   padding: 5px 5px;
-  font-family: "Poppins", sans-serif;
+  font-family: "Open Sans", sans-serif;
   z-index: 100;
 }
-.header-wrapper{
-  width:100%;
+
+.header-wrapper {
+  width: 100%;
   display: flex;
   justify-content: space-between;
   align-items: center;
+}
 
-}
-.left__header  {
+.left__header {
   display: flex;
-  align-items: flex-end;
-  gap: 5px;
+  align-items: center;
+  gap: 10px;
 }
-.left__header > img {
+
+.left__header>img {
   height: 50px;
   object-fit: contain;
- 
 }
-.left__header > h5 {
-  font-size:40px;
-  font-weight:500;
+
+.left__header>h5 {
+  font-size: 32px;
+  font-weight: 700;
+  color: #004080;
 }
 
 .right__header {
   display: flex;
   align-items: center;
-  gap: 2%;
-  margin-right: 1%;
-  
- 
-}
-.right__header > Button >a {
-  text-decoration: none;
-  color:blue;                                        
+  gap: 15px;
+  margin-right: 10px;
 }
 
-.right__header .login-button >a .register-button {
-  border:5px green;
- 
-}
-
-
-
-@media screen and (max-width:680px) {
-  .left__header  {
-    display: flex;
-    align-items: flex-end;
-  }
-  .left__header > img {
-    height: 50px;
-  }
-  .left__header > h5 {
-    font-size:25px;
-    font-weight:300;
-  }
-  
-}
-
-
-/* .admin__toggle__menu {
-  display: none;
-}
-
-
-
-
-
-.left__header > a {
-  color: black;
-  text-decoration:none;
-}
-
-.middle__header {
-  flex: 1;
-  font-size: 14px;
-}
-
-.middle__header > ul {
+.auth-buttons {
   display: flex;
-  align-items: center;
-  margin-top: 10px;
+  gap: 10px;
 }
 
-.middle__header > ul > li {
-  list-style-type: none;
-  margin: 0px 8px;
-}
-
-.middle__header > ul > li > a {
-  color: black;
+.login-button a,
+.register-button a {
   text-decoration: none;
+  color: white;
+  padding: 8px 16px;
+  border-radius: 4px;
 }
 
-.middle__header > ul > li > a:hover {
-  border-bottom: 3px solid green;
-  text-decoration: none;
-  font-family: "Roboto", sans-serif;
+.login-button a {
+  background-color: #004080;
 }
 
-
-
-.Login_Register_Button {
-  display: flex;
-  align-items: center;
-  
-}
-.custom-button {
-    color: white;
-    width: 150px;
-    height: 50px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-color:#1976d2;
-    text-decoration: none;
-    
-}
-.custom-button a {
-    text-decoration: none;
-    color: inherit;
-    font-size: 18px;
+.register-button a {
+  background-color: #FFA500;
 }
 
-.custom-button:hover {
-    background-color: lightgray;
-   
+@media screen and (max-width: 680px) {
+  .left__header>h5 {
+    font-size: 25px;
+    font-weight: 500;
+  }
+
+  .right__header {
+    gap: 10px;
+  }
 }
-
-/* @media screen and (max-width: 768px) {
-  /* .right__header {
-    display: none;
-  } 
-
-  .admin__toggle__menu {
-    display: block;
-  }
-
-  .logout__button {
-    display: block;
-  }
-
-  .middle__header > ul {
-    position: relative;
-    display: block;
-    position: absolute;
-    top: 70px;
-    left: 0%;
-    background-color: white;
-    border-right: 1px solid rgba(128, 128, 128, 0.226);
-    width: 30vw;
-    height: 100vh;
-  }
-
-  .middle__header > ul {
-    transition: 0.4s all ease-in;
-  }
-
-  .middle__header > ul > li {
-    border-bottom: 2px solid gray;
-    padding: 10px 0;
-  }
-
-  .middle__header > ul > li > a:hover {
-    border-bottom: none;
-    text-decoration: none;
-  }
-
-
-  .sidebar__nav {
-    display: none;
-  }
-
-  .left__header {
-    flex: 1;
-  }
-
-  .menu__toggle__icon {
-    display: block;
-  }
-} */ 
