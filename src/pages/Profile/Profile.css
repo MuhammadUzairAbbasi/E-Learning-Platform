@@ -5,12 +5,15 @@
     background-color: #e0f7fa;
     /* Adjust as per your header height */
     box-sizing: border-box;
+    overflow: auto;
 }
 
 .profileinfo {
-    width: 70%;
+    width: 60%;
     margin-left: 20%;
+    height: calc(100vh - 200px);
     /* Adjust max-width as per your design */
+    
     padding: 20px;
     box-sizing: border-box;
 }

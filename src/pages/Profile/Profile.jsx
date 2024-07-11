@@ -46,8 +46,8 @@ const Profile = () => {
               src={profilePicture}
               className="avatar"
               sx={{
-                width: 120,
-                height: 120,
+                width: 100,
+                height: 100,
                 border: "2px solid #1976d2",
                 boxShadow: "0px 0px 10px rgba(0, 0, 0, 0.2)",
                 cursor: "pointer",
