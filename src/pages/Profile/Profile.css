@@ -1,118 +1,24 @@
-.avatar {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    position: relative;
-    top: -70px;
-}
-
-.avatar__profile__pic {
-    height: 130px !important;
-    width: 130px !important;
-    border-radius: 50%;
-    border: 2px solid #ccc;
-}
-
-.Profile_Informaton {
-    display: flex;
-    justify-content: center;
-    flex-direction: column;
-    align-items: center;
-    margin: 20px 5%;
-}
-
-.Profile-wrapper {
+.profilepage {
     display: flex;
     width: 100%;
-    flex-wrap: wrap-reverse;
-    justify-content: center;
-    gap: 20px;
-}
-
-.profile-edit > h5,
-.profile-details > h5 {
-    margin-bottom: 5%;
-    text-align: center;
-    font-size: 25px;
-    color: skyblue;
-}
-
-.profile-edit,
-.profile-details {
-    width: 100%;
-    max-width: 600px;
-    flex: 1;
-}
-
-.profile_option {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 10px;
-}
-
-.profile_info {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    gap: 20px;
-    width: 100%;
-}
-
-.profile_option,
-.profile_info {
-    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
-    border: 5px solid rgba(0, 0, 0, 0.1);
-    padding: 20px;
-    border-radius: 10px;
-    background-color: #fff;
+    height: calc(100vh - 60px);
+    background-color: #e0f7fa;
+    /* Adjust as per your header height */
     box-sizing: border-box;
 }
 
-.Option_list > li {
-    list-style: none;
-    margin: 10px 0;
+.profileinfo {
+    width: 70%;
+    margin-left: 20%;
+    /* Adjust max-width as per your design */
+    padding: 20px;
+    box-sizing: border-box;
 }
 
-.Option_list > li > a {
-    text-decoration: none;
-    color: rgb(71, 192, 248);
-    font-size: 14px;
-    font-weight: 600;
-}
-
-.Option_list > li > a:hover {
-    text-decoration: none;
-    border-bottom: 2px solid green;
-}
-
-.profile_info > h6 {
-    font-size: 15px;
-}
-
-@media screen and (max-width: 768px) {
-    .Profile_Informaton {
-        flex-direction: column;
-        align-items: center;
-    }
-
-    .profile-edit,
-    .profile-details {
-        max-width: 100%;
-        flex: none;
-    }
-}
-
-@media screen and (max-width: 480px) {
-    .profile_option {
-        width: 100%;
-    }
-
-    .profile_info {
-        width: 100%;
-    }
-
-    .profile-edit > h5,
-    .profile-details > h5 {
-        font-size: 20px;
-    }
+.profileinfo .avatar {
+    width: 120px;
+    height: 120px;
+    border: 2px solid #1976d2;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+    cursor: pointer;
 }
