@@ -1,55 +1,85 @@
-import React from 'react'
-import './register.css'
-import { Container, Paper, Typography } from '@mui/material'
-import { Col, Row } from 'react-bootstrap'
-import Button from 'react-bootstrap/Button';
-import Form from 'react-bootstrap/Form';
-import { Link } from 'react-router-dom';
+import React, { useState } from "react";
+import "./register.css";
+import { Link } from "react-router-dom";
+import { Paper, Typography } from "@mui/material";
+import Button from "react-bootstrap/Button";
+import Form from "react-bootstrap/Form";
+import { FiUser, FiMail, FiLock, FiEye, FiEyeOff } from "react-icons/fi";
+import google from './images/google.svg';
+import github from './images/github.svg';
+import linkedin from './images/linkedin.svg';
+
 const Register = () => {
+  const [showPassword, setShowPassword] = useState(false);
+  const [showConfirmPassword, setShowConfirmPassword] = useState(false);
+
+  const togglePasswordVisibility = () => {
+    setShowPassword(!showPassword);
+  };
+
+  const toggleConfirmPasswordVisibility = () => {
+    setShowConfirmPassword(!showConfirmPassword);
+  };
+
   return (
-    
-    <Container > 
+    <div className="registerpage">
+      <div className="paper">
+        <h3 className="logo-text text-center">Register In Edu Hub</h3>
+        <Form>
+          <div className="mb-4 form-group-icon">
+            <FiUser className="text-xl input-icon" />
+            <Form.Control type="text" placeholder="User Name" className="input-with-icon" />
+          </div>
+          <div className="mb-4 form-group-icon">
+            <FiMail className="text-xl input-icon" />
+            <Form.Control type="email" placeholder="Enter email" className="input-with-icon" />
+          </div>
+          <div className="password-row">
+            <div className="password-container form-group-icon">
+              <FiLock className="text-xl input-icon" />
+              <Form.Control
+                type={showPassword ? "text" : "password"}
+                placeholder="Password"
+                className="input-with-icon"
+              />
+              <div className="password-icon" onClick={togglePasswordVisibility}>
+                {showPassword ? <FiEyeOff /> : <FiEye />}
+              </div>
+            </div>
+            <div className="password-container form-group-icon">
+              <FiLock className="text-xl input-icon" />
+              <Form.Control
+                type={showConfirmPassword ? "text" : "password"}
+                placeholder="Confirm Password"
+                className="input-with-icon"
+              />
+              <div className="password-icon" onClick={toggleConfirmPasswordVisibility}>
+                {showConfirmPassword ? <FiEyeOff /> : <FiEye />}
+              </div>
+            </div>
+          </div>
+          <Button variant="primary" type="submit" className="submit-button">
+            Sign Up
+          </Button>
+          <Typography style={{ color: "GrayText" }} variant="subtitle2" className="text-center mb-3">
+            Already have an Account?{" "}
+            <span className="text-primary">
+              <Link to="/Login">Login Here</Link>
+            </span>
+          </Typography>
+          <div className="text-center font-bold mt-0">
+            <h5 className="m-2">OR</h5>
+            <h4 className="font-semibold">Sign Up with</h4>
+            <div className="social-icons mt-4 gap-5">
+              <Link><img src={google} alt="Google" /></Link>
+              <Link><img src={github} alt="Github" /></Link>
+              <Link><img src={linkedin} alt="Linkedin" /></Link>
+            </div>
+          </div>
+        </Form>
+      </div>
+    </div>
+  );
+};
 
-    <Row>
-        <Col md={6} className='mx-auto mt-4 mb-4'>
-<Paper  className='p-4'>
-<Typography className="text-center text-primary mb-3"
-                variant="h5">
-    Register Here
-</Typography>
-
-<Form >
-      <Form.Group className="mb-3" controlId="formBasicEmail">
-        <Form.Label>User Name</Form.Label>
-        <Form.Control type="text" placeholder="User Name" />
-        
-      </Form.Group>
-
-      <Form.Group className="mb-3" controlId="formBasicEmail">
-        <Form.Label>Email address</Form.Label>
-        <Form.Control type="email" placeholder="Enter email" />
-        
-      </Form.Group>
-      <Form.Group className="mb-3" controlId="formBasicPassword">
-        <Form.Label>Password</Form.Label>
-        <Form.Control type="password" placeholder="Password" />
-      </Form.Group>
-      <Form.Group className="mb-3" controlId="formBasicPassword">
-        <Form.Label>Confirm Password</Form.Label>
-        <Form.Control type="password" placeholder="Confirm Password" />
-      </Form.Group>
-      <Typography  style={{ color: "GrayText" }} variant="subtitle2">Already have an Account?  <span className='text-primary'><Link to="/Login">Login Here</Link></span></Typography>
-      <Button variant="primary" type="submit">
-        Submit
-      </Button>
-    </Form>
-</Paper>
-
-        </Col>
-    </Row>
-    </Container>
-
-  )
-}
-
-export default Register
+export default Register;

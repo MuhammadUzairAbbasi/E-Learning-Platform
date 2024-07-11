@@ -32,21 +32,12 @@ const Dashboard = () => {
             </Typography>
             
           </Box>
-            {/* <div className="dashboard__header__name">
-              <h2 className="dashboard__name text-2xl font-semibold">
-                {user && user.userName}
-              </h2>
-              <Link to="/">
-                <div className="dashboard_link">
-                  <h3>Dashboard</h3>
-                </div>
-              </Link>
-            </div> */}
           </Container>
           <Container>
             <div className="course__container">
               {CourseData.map((course, index) => (
                 <CourseCard
+                    key={index}
                     title={course.title}
                     name={course.name}
                     img={course.thumbnail}
