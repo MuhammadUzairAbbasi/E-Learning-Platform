@@ -1,13 +1,15 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { Container ,Typography ,Box } from "@mui/material";
 import { Link } from "react-router-dom";
 import CourseData from "./FakeData/CourseData";
 import CourseCard from "./CourseCard/CourseCard";
 import StudentSidebar from "../StudentSidebar/StudentSidebar";
 import "./dashboard.css";
+import { UserContext } from "../../App";
 
 const Dashboard = () => {
-  const user = { userName: "Sami" };
+  const { user } = useContext(UserContext);
+  // const user = { userName: "Sami" };
   const [isSidebarExpanded, setSidebarExpanded] = useState(false);
 
   const toggleSidebar = () => {
@@ -25,7 +27,7 @@ const Dashboard = () => {
           <Container>
             <Box className="dashboard-header">
             <Typography sx={{'fontWeight':600}} className="text-left heading" variant="h4" color="primary">
-              {user && user.userName}
+              {user && user.username}
             </Typography>
             <Typography className="text-right heading dashboard-link" variant="h4" color="primary">
               Dashboard

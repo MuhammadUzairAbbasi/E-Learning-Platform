@@ -4,13 +4,20 @@ import MenuIcon from "@mui/icons-material/Menu";
 import DashboardIcon from "@mui/icons-material/Dashboard";
 import SettingsApplicationsIcon from "@mui/icons-material/SettingsApplications";
 import ExitToAppIcon from "@mui/icons-material/ExitToApp";
-import AssignmentIcon from "@mui/icons-material/Assignment"; // Icon for "My Courses"
+import AssignmentIcon from "@mui/icons-material/Assignment";
 import LibraryBooksIcon from "@mui/icons-material/LibraryBooks";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import Sidebar from "../../components/Sidebar/Sidebar";
-import './studentsidebar.css'
+import './studentsidebar.css';
 
 const StudentSidebar = ({ isSidebarExpanded, toggleSidebar }) => {
+  const handleLogout = () => {
+    // Remove user data from local storage
+    localStorage.removeItem('user'); // Replace 'user' with the actual key you use to store user data
+    // Redirect to login page
+    window.location.href = '/login';
+  };
+
   return (
     <div
       className={`left__sidebar__dashboard ${
@@ -48,15 +55,16 @@ const StudentSidebar = ({ isSidebarExpanded, toggleSidebar }) => {
       <Sidebar
         Icon={SettingsApplicationsIcon}
         title="Settings"
-        link="/Settings"
+        link="/settings"
         isSidebarExpanded={isSidebarExpanded}
       />
       <Divider component="div" />
       <Sidebar
         Icon={ExitToAppIcon}
         title="Logout"
-        link="/Login"
+        link="#"
         isSidebarExpanded={isSidebarExpanded}
+        onClick={handleLogout}
       />
     </div>
   );

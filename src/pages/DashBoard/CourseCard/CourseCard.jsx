@@ -22,7 +22,7 @@ const CourseCard = ({ title, name, id, img, date, lectures, progress }) => {
         <span className="date">{date}</span>
         <h5 className="title">{title}</h5>
         <h5 className="name">{name}</h5>
-        <LinearProgress variant="determinate" value={progress} className="progress-bar" />
+        
         <span className="progress-text">{progress}% complete</span>
       </div>
     </div>

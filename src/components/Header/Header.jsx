@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { Link, NavLink } from "react-router-dom";
 import { IconButton, Avatar } from "@mui/material";
 import NotificationsActiveIcon from "@mui/icons-material/NotificationsActive";
@@ -7,9 +7,11 @@ import { Button } from "@mui/material";
 import logo from "../../assets/Logo.jpg";
 
 import "./header.css";
+import { UserContext } from "../../App";
 
 const Header = () => {
-  const user = { role: "Student" };
+  
+  const user = { role: "student" };
   console.log(user.role);
   const [toggle, setToggle] = useState(false);
   const toggleClose = () => {
