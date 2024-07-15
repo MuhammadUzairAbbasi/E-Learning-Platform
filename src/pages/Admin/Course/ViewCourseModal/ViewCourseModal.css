@@ -1,0 +1,5 @@
+.course-actions {
+    display: flex;
+    gap: 8px;
+    /* Space between icons */
+}

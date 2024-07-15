@@ -14,6 +14,7 @@ const Login = () => {
   const [email, setemail] = useState("");
   const [password, setpassword] = useState("");
   const navigate = useNavigate();
+  
   const handleSubmit = async (e) => {
     e.preventDefault();
       const user = {
@@ -23,7 +24,7 @@ const Login = () => {
        try{
         console.log(user)
      const res = await axios.post(`${baseServerUrl}/api/auth/login`, user)
-        console.log(res.data)
+        console.log(res.data.role)
         localStorage.setItem("user", JSON.stringify(res.data));
        console.log("login successfully")
        navigate("/")

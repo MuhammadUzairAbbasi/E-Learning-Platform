@@ -9,7 +9,7 @@ import { UserContext } from "../../App";
 
 const Dashboard = () => {
   const { user } = useContext(UserContext);
-  // const user = { userName: "Sami" };
+  console.log(user.role);
   const [isSidebarExpanded, setSidebarExpanded] = useState(false);
 
   const toggleSidebar = () => {

@@ -1,7 +1,7 @@
 import React, { useState } from "react";
-import { Container} from "@mui/material";
+import { Box,Typography,Container} from "@mui/material";
 import { Link } from "react-router-dom";
-import AdminSidebar from './AdminSidebar/AdminSidebar'
+import AdminSidebar from '../AdminSidebar/AdminSidebar'
 
 import "./admindashboard.css";
 
@@ -22,16 +22,15 @@ const AdminDashboard = () => {
         />
         <div className="main__body__dashboard">
           <Container>
-            <div className="dashboard__header__name">
-              <h2 className="dashboard__name text-2xl font-semibold ml-3">
-                Admin
-              </h2>
-              <Link to="/admindashboard">
-                <div className="dashboard_link mr-3">
-                  <h3>Dashboard</h3>
-                </div>
-              </Link>
-            </div>
+            <Box className="dashboard-header">
+            <Typography sx={{'fontWeight':600}} className="text-left heading" variant="h4" color="primary">
+              Admin
+            </Typography>
+            <Typography className="text-right heading dashboard-link" variant="h4" color="primary">
+              Dashboard
+            </Typography>
+            
+          </Box>
             </Container>
         </div>
       </div>

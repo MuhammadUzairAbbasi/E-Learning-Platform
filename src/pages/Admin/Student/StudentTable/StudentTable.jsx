@@ -1,38 +1,91 @@
 import React from 'react';
+import {
+  IconButton,
+  Table,
+  TableBody,
+  TableCell,
+  TableContainer,
+  TableHead,
+  TableRow,
+  Paper,
+  TableSortLabel,
+} from '@mui/material';
+import axios from 'axios';
+import { Delete } from '@mui/icons-material';
+import { baseServerUrl } from '../../../../constants';
 
-const StudentTable = ({ students }) => {
-  console.log(students);
-
+const StudentTable = ({ students, setStudents }) => {
+  
+  const handleDelete = async (id) => {
+    try {
+      await axios.delete(`${baseServerUrl}/api/users/users/${id}`);
+      setStudents((prevStudents) =>
+        prevStudents.filter((student) => student._id !== id)
+      );
+    } catch (error) {
+      console.log(error);
+    }
+  };
+  
   return (
-    <div className="container mx-auto my-5 overflow-x-auto">
-      <h3 className="text-2xl text-center font-bold mb-4">Student List</h3>
-      <table className="min-w-full bg-white border border-gray-200">
-        <thead>
-          <tr>
-            <th className="py-2 px-4 border-b border-gray-200">Id</th>
-            <th className="py-2 px-4 border-b border-gray-200">Name</th>
-            <th className="py-2 px-4 border-b border-gray-200">Email</th>
-            <th className="py-2 px-4 border-b border-gray-200">Actions</th>
-          </tr>
-        </thead>
-        <tbody>
-          {students.map(student => (
-            <tr key={student.id}>
-              <td className="py-2 px-4 border-b border-gray-200">{student.id}</td>
-              <td className="py-2 px-4 border-b border-gray-200">{student.name}</td>
-              <td className="py-2 px-4 border-b border-gray-200">{student.email}</td>
-              <td className="py-2 px-4 border-b border-gray-200">
-                <button
-                  className="text-blue-500 hover:text-blue-700"
+    <TableContainer
+      component={Paper}
+      sx={{ boxShadow: 3, borderRadius: 2, bgcolor: "#f5f5f5" }}
+    >
+      <Table sx={{ minWidth: 650, fontFamily: "Arial, sans-serif" }}>
+        <TableHead>
+          <TableRow sx={{ bgcolor: "#3f51b5" }}>
+            <TableCell
+              align="center"
+              sx={{ fontWeight: "bold", fontSize: "1rem", color: "#fff" }}
+            >
+              <TableSortLabel>Id</TableSortLabel>
+            </TableCell>
+            <TableCell
+              align="center"
+              sx={{ fontWeight: "bold", fontSize: "1rem", color: "#fff" }}
+            >
+              <TableSortLabel>Name</TableSortLabel>
+            </TableCell>
+            <TableCell
+              align="center"
+              sx={{ fontWeight: "bold", fontSize: "1rem", color: "#fff" }}
+            >
+              <TableSortLabel>Email</TableSortLabel>
+            </TableCell>
+            <TableCell
+              align="center"
+              sx={{ fontWeight: "bold", fontSize: "1rem", color: "#fff" }}
+            >
+              Actions
+            </TableCell>
+          </TableRow>
+        </TableHead>
+        <TableBody>
+          {students.map((student) => (
+            <TableRow key={student._id}>
+              <TableCell align="center" sx={{ fontSize: "0.9rem" }}>
+                {student._id.slice(-4)}
+              </TableCell>
+              <TableCell align="center" sx={{ fontSize: "0.9rem" }}>
+                {student.username}
+              </TableCell>
+              <TableCell align="center" sx={{ fontSize: "0.9rem" }}>
+                {student.email}
+              </TableCell>
+              <TableCell align="center">
+                <IconButton
+                  aria-label="delete"
+                  onClick={() => handleDelete(student._id)}
                 >
-                  View Info
-                </button>
-              </td>
-            </tr>
+                  <Delete sx={{ color: "red" }} />
+                </IconButton>
+              </TableCell>
+            </TableRow>
           ))}
-        </tbody>
-      </table>
-    </div>
+        </TableBody>
+      </Table>
+    </TableContainer>
   );
 };
 

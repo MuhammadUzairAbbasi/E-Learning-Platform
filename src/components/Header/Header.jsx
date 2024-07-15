@@ -11,13 +11,6 @@ import { UserContext } from "../../App";
 
 const Header = () => {
   
-  const user = { role: "student" };
-  console.log(user.role);
-  const [toggle, setToggle] = useState(false);
-  const toggleClose = () => {
-    setToggle(false);
-  };
-
   return (
     <div className="header">
       <div className="header-wrapper">
@@ -26,28 +19,15 @@ const Header = () => {
           <h5>Edu Hub</h5>
         </div>
         <div className="right__header">
-          {user && user.role ? (
-            <>
-              <IconButton>
-                <NotificationsActiveIcon />
-              </IconButton>
-              <IconButton>
-                <SettingsIcon />
-              </IconButton>
-              <Link to="/profile">
-                <Avatar>S</Avatar>
-              </Link>
-            </>
-          ) : (
-            <div className="auth-buttons">
-              <Button className="login-button">
-                <NavLink to="/Login">Login</NavLink>
-              </Button>
-              <Button className="register-button">
-                <NavLink to="/Register">Register</NavLink>
-              </Button>
-            </div>
-          )}
+          <IconButton>
+            <NotificationsActiveIcon />
+          </IconButton>
+          <IconButton>
+            <SettingsIcon />
+          </IconButton>
+          <Link to="/profile">
+            <Avatar>S</Avatar>
+          </Link>
         </div>
       </div>
     </div>
