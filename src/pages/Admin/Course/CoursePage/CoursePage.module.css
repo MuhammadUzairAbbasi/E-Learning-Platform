@@ -1,0 +1,49 @@
+/* CoursePage.module.css */
+.flexContainer {
+  display: flex;
+  height: calc(100vh - 60px); /* Full height minus header */
+}
+
+.mainContent {
+  display: flex;
+  flex-direction: column;
+  width: 90%;
+  margin-left: 100px; /* Adjust based on sidebar width */
+  overflow-y: auto; /* Allow scrolling if needed */
+}
+
+.courseHeader {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 10px;
+  padding: 1.25rem; /* 20px */
+  background-color: #e5e7eb; /* Gray-200 */
+}
+
+.courseName {
+  text-align: center;
+  font-size: 1.5rem; /* Adjust font size */
+}
+
+.uploadButton {
+  background-color: rgb(61, 73, 240);
+  color: white;
+  padding: 0.5rem 0.75rem; /* Adjust padding */
+  border-radius: 0.375rem; /* Rounded */
+  margin-right: 1rem; /* Margin for spacing */
+}
+
+.container {
+  margin-top: 1.25rem; /* Space between upload button and lectures */
+}
+
+.lecturesSection {
+  padding: 0 1rem; /* Add padding to lectures section */
+}
+
+.flex1 {
+  width: 80%;
+  overflow-y: auto;
+  margin: 0 1.25rem; /* Margin for left/right spacing */
+}

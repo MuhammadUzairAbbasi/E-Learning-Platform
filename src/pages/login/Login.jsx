@@ -27,7 +27,7 @@ const Login = () => {
         console.log(res.data.role)
         localStorage.setItem("user", JSON.stringify(res.data));
        console.log("login successfully")
-       navigate("/")
+       navigate("/");
     }catch(err){
         console.log(err, "error haiii")
     }

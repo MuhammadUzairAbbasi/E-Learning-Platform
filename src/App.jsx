@@ -21,7 +21,8 @@ import NotFound from "./pages/404NotFound/NotFound.jsx";
 import AdminCourses from "./pages/Admin/Course/AdminCourses.jsx";
 import StudentInfo from "./pages/Admin/Student/StudentInfo.jsx";
 import AdminDashboard from "./pages/Admin/AdminDashboard/AdminDashboard.jsx";
-
+import CourseTable from "./pages/Admin/Course/CourseTable/CourseTable.jsx";
+import CoursePage from "./pages/Admin/Course/CoursePage/CoursePage.jsx";
 // Create UserContext
 export const UserContext = createContext();
 
@@ -51,6 +52,7 @@ const App = () => {
     </div>
   );
 };
+export default App;
 
 const ConditionalRoutes = () => {
   const { user } = useContext(UserContext);
@@ -58,20 +60,26 @@ const ConditionalRoutes = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    if (!user) {
-      if (location.pathname != "/login" && location.pathname != "/register") {
-        // window.location.href = "/login";
-        navigate("/login");
-      }
+    if (!user && location.pathname !== "/login" && location.pathname !== "/register") {
+      navigate("/login");
     }
-  }, [user, location.pathname]);
+  }, [user, location.pathname, navigate]);
+
+  const renderProtectedRoute = (Component, role = null) => {
+    if (!user) {
+      return <Navigate to="/login" />;
+    }
+    if (role && user.role !== role) {
+      return <Navigate to="/" />;
+    }
+    return <Component />;
+  };
 
   const isNotFound = location.pathname === "/404";
 
   return (
     <>
       {user && !isNotFound && <Header />}
-
       <Routes>
         <Route
           exact
@@ -93,39 +101,35 @@ const ConditionalRoutes = () => {
           path="/register"
           element={user ? <Navigate to="/" /> : <Register />}
         />
-        <Route
-          path="/courses"
-          element={user ? <AllCourses /> : <Navigate to="/login" />}
-        />
-        <Route
-          path="/profile"
-          element={user ? <Profile /> : <Navigate to="/login" />}
-        />
-        <Route
-          path="/mycourses"
-          element={user ? <MyCourses /> : <Navigate to="/login" />}
-        />
-        <Route
-          path="/allcourses"
-          element={user ? <AllCourses /> : <Navigate to="/login" />}
-        />
-
+        <Route path="/courses" element={renderProtectedRoute(AllCourses)} />
+        <Route path="/profile" element={renderProtectedRoute(Profile)} />
+        <Route path="/mycourses" element={renderProtectedRoute(MyCourses)} />
+        <Route path="/allcourses" element={renderProtectedRoute(AllCourses)} />
         <Route
           path="/courseinfo/:title"
-          element={user ? <CourseInfo /> : <Navigate to="/login" />}
+          element={renderProtectedRoute(CourseInfo)}
         />
         <Route
           path="/admincourses"
-          element={user ? <AdminCourses /> : <Navigate to="/login" />}
+          element={renderProtectedRoute(AdminCourses, "Admin")}
         />
         <Route
           path="/admindashboard"
-          element={user ? <AdminDashboard /> : <Navigate to="/login" />}
+          element={renderProtectedRoute(AdminDashboard, "Admin")}
         />
         <Route
           path="/adminstudentinfo"
-          element={user ? <StudentInfo /> : <Navigate to="/login" />}
+          element={renderProtectedRoute(StudentInfo, "Admin")}
         />
+        <Route
+          path="/coursetable"
+          element={renderProtectedRoute(CourseTable, "Admin")}
+        />
+        <Route
+          path="/courses/:courseId"
+          element={renderProtectedRoute(CoursePage)}
+        />
+
         <Route path="*" element={<Navigate to="/404" />} />
         <Route path="/404" element={<NotFound />} />
       </Routes>
@@ -133,4 +137,5 @@ const ConditionalRoutes = () => {
   );
 };
 
-export default App;
+
+

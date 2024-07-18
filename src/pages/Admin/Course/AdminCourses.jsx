@@ -1,42 +1,63 @@
-// AdminCourses.js
-import React, { useState } from 'react';
-import { Button } from '@mui/material';
-import AdminSidebar from '../AdminSidebar/AdminSidebar';
-import AddCourseModal from './AddCourseModal/AddCourseModal';
-import ViewCourseModal from './ViewCourseModal/ViewCourseModal';
-import view_icon from './images/view-icon.svg';
-import add_icon from './images/add-icon.svg';
-import './AdminCourses.css'
+import React, { useState, useEffect } from "react";
+import { Button } from "@mui/material";
+import AdminSidebar from "../AdminSidebar/AdminSidebar";
+import AddCourseModal from "./AddCourseModal/AddCourseModal";
+import CourseTable from "./CourseTable/CourseTable";
+import add_icon from "./images/add-icon.svg";
+import axios from "axios";
+import "./AdminCourses.css";
+import { baseServerUrl } from "../../../constants";
 
 const AdminCourses = () => {
   const [isSidebarExpanded, setSidebarExpanded] = useState(false);
   const [showAdd, setShowAdd] = useState(false);
-  const [showView, setShowView] = useState(false);
   const [courses, setCourses] = useState([]);
 
   const toggleSidebar = () => {
     setSidebarExpanded(!isSidebarExpanded);
   };
 
-  const handleShowAdd = () => setShowAdd(true);
-  const handleCloseAdd = () => setShowAdd(false);
-  
-  const handleShowView = () => setShowView(true);
-  const handleCloseView = () => setShowView(false);
-
-  const handleEditCourse = (courseId) => {
-    console.log(`Edit course with ID: ${courseId}`);
-    // Implement your edit logic here
+  const handleShowAdd = () => {
+    setShowAdd(true);
   };
 
-  const handleDeleteCourse = (courseId) => {
-    setCourses(courses.filter(course => course.id !== courseId));
-    console.log(`Deleted course with ID: ${courseId}`);
+  const handleCloseAdd = () => {
+    setShowAdd(false);
   };
 
-  const addCourse = (newCourse) => {
-    setCourses((prevCourses) => [...prevCourses, newCourse]);
-    handleCloseAdd();
+  const addCourse = (course) => {
+    setCourses((prevCourses) => [...prevCourses, course]);
+  };
+
+  useEffect(() => {
+    const fetchCourses = async () => {
+      try {
+        const response = await axios.get(
+          `${baseServerUrl}/api/courses/getcourses`
+        );
+        setCourses(response.data);
+      } catch (error) {
+        console.error("Error fetching courses:", error);
+      }
+    };
+
+    fetchCourses();
+  }, []);
+
+  const handleDeleteCourse = async (courseId) => {
+    try {
+      console.log("Deleting course ID:", courseId);
+      await axios.delete(
+        `${baseServerUrl}/api/courses/deletecourse/${courseId}`
+      );
+
+      // Update the course list immediately after deletion
+      setCourses((prevCourses) =>
+        prevCourses.filter((course) => course._id !== courseId)
+      );
+    } catch (error) {
+      console.error("Error deleting course:", error);
+    }
   };
 
   return (
@@ -50,28 +71,33 @@ const AdminCourses = () => {
           <div className="container course-info-container">
             <div className="heading_container">
               <h1 className="course-info-heading">Course Info</h1>
-            </div>
-            <div className="cards-wrapper-flex">
-              <div className="card" onClick={handleShowAdd}>
+              <Button
+                className="Addbtn"
+                onClick={handleShowAdd}
+                style={{
+                  float: "right",
+                  backgroundColor: "#007bff",
+                  color: "white",
+                  marginBottom: 5,
+                }}
+              >
                 <img src={add_icon} alt="Add Course" className="card-image" />
-                <Button className="btn btn-add">Add Course</Button>
-              </div>
-              <div className="card" onClick={handleShowView}>
-                <img src={view_icon} alt="View Course" className="card-image" />
-                <Button className="btn btn-add">View Courses</Button>
-              </div>
+                Add Course
+              </Button>
             </div>
+
+            <CourseTable
+              courses={courses}
+              handleDeleteCourse={handleDeleteCourse}
+            />
           </div>
         </section>
       </div>
 
-      <AddCourseModal open={showAdd} handleClose={handleCloseAdd} addCourse={addCourse} />
-      <ViewCourseModal
-        open={showView}
-        handleClose={handleCloseView}
-        courses={courses}
-        handleEditCourse={handleEditCourse}
-        handleDeleteCourse={handleDeleteCourse}
+      <AddCourseModal
+        open={showAdd}
+        handleClose={handleCloseAdd}
+        addCourse={addCourse}
       />
     </div>
   );

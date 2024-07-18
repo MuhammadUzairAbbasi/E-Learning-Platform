@@ -32,20 +32,23 @@ const Register = () => {
     e.preventDefault();
     if (password !== againpassword) {
       passwordAgain.current.setCustomValidity("passwords don't match!");
-    }else{
+    } else {
       const user = {
         username,
         email,
-        password
+        password,
+      };
+      try {
+        console.log(user);
+        const res = await axios.post(
+          `${baseServerUrl}/api/auth/register`,
+          user
+        );
+        navigate("/login");
+        console.log("registered");
+      } catch (err) {
+        console.log(err, "error haiii");
       }
-       try{
-        console.log(user)
-     const res = await axios.post(`${baseServerUrl}/api/auth/register`, user)
-     navigate("/login")
-       console.log("registered")
-    }catch(err){
-        console.log(err, "error haiii")
-    }
     }
   };
   return (
