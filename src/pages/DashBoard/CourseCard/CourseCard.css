@@ -29,7 +29,7 @@
   border-radius: 10px;
 }
 
-.overlay {
+/* .overlay {
   position: absolute;
   bottom: 0;
   left: 0;
@@ -45,7 +45,7 @@
 
 .container:hover .overlay {
   transform: scale(1);
-}
+} */
 
 .text {
   color: white;

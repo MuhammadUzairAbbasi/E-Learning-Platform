@@ -16,12 +16,32 @@
   transition: width 0.3s ease;
   width: 60px;
 }
+.dashboard-header {
+  display: flex;
+  justify-content: space-between;
+  margin: 10px 0;
+  padding: 10px;
+  width: 100%;
+  background-color: #f0f0f0;
+  border-radius: 8px;
+}
 
 .left__sidebar__dashboard.expanded {
   width: 200px;
 }
 
+.main__body__dashboard {
+  margin-left: 70px;
+  width: 100%;
+}
+
 .menu-button {
   margin-left: 1px;
   margin-top: 22px;
+}
+
+@media screen and (max-width:768px) {
+  .dashboard-link{
+    display: none;
+  }
 }

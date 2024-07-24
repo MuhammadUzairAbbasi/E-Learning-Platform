@@ -1,7 +1,25 @@
-import React from "react";
-import "./cards.css"; // Import the CSS file
+import React, { useContext } from "react";
+import { useNavigate } from "react-router-dom";
+import { Button } from "@mui/material";
+import "./cards.css";
+import { UserContext } from "../../../App.jsx";
 
 const CardOfAllCourse = ({ course }) => {
+  const navigate = useNavigate();
+  const { user } = useContext(UserContext);
+
+  const handleEnrollClick = () => {
+    if (!user) {
+      // Redirect to login if user is not logged in
+      navigate("/login");
+      return;
+    }
+
+    navigate("/checkout", {
+      state: { userId: user._id, courseId: course._id },
+    });
+  };
+
   return (
     <div className="allcourses-course-card">
       <img
@@ -16,7 +34,15 @@ const CardOfAllCourse = ({ course }) => {
           <p className="allcourses-course-lectures">
             Lectures: {course.lectures.length}
           </p>
-          <button className="allcourses-course-button">Enroll</button>
+          <p className="allcourses-course-price mb-2">Price: ${course.price}</p>
+          <Button
+            className="allcourses-course-button"
+            onClick={handleEnrollClick}
+            variant="contained"
+            color="primary"
+          >
+            Enroll
+          </Button>
         </div>
       </div>
     </div>

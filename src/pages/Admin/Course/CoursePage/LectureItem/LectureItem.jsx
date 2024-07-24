@@ -1,12 +1,14 @@
 import React from "react";
+import ReactPlayer from "react-player";
 
 const LectureItem = ({ lecture, toggleLecture, onDelete }) => {
   return (
-    <div className="lecture-item mb-4 bg-white rounded-lg shadow-lg p-4">
+    <div className="lecture-item mb-4 bg-white rounded-lg shadow-lg p-4 w-full">
       <div className="flex justify-between items-center">
         <div
-          className="lecture-title cursor-pointer text-xl font-semibold text-gray-800"
+          className="lecture-title cursor-pointer text-2xl font-bold text-gray-800"
           onClick={() => toggleLecture(lecture._id)}
+          style={{ textTransform: "uppercase" }} // Apply uppercase transformation here
         >
           {lecture.title}
         </div>
@@ -67,25 +69,19 @@ const LectureItem = ({ lecture, toggleLecture, onDelete }) => {
       </div>
       {lecture.isOpen && (
         <div className="lecture-details mt-4">
-          <p className="text-gray-600 mb-4">{lecture.description}</p>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            {lecture.video && (
-              <div className="video-player">
-                <h4 className="text-lg font-semibold mb-2">Video Lecture</h4>
-                <video width="100%" controls>
-                  <source src={lecture.video} type="video/mp4" />
-                  Your browser does not support the video tag.
-                </video>
+          <div className="flex justify-center">
+            {lecture.videoLink && (
+              <div
+                className="video-player flex flex-col items-center"
+                style={{ width: "100%" }}
+              >
+                <ReactPlayer url={lecture.videoLink} controls width="100%" />
               </div>
             )}
-            {lecture.pdf && (
-              <div className="pdf-viewer">
-                <h4 className="text-lg font-semibold mb-2">PDF Lecture</h4>
-                <a href={lecture.pdf} target="_blank">
-                  Open PDF
-                </a>
-              </div>
-            )}
+          </div>
+          <div>
+            <h4 className="text-2xl font-semibold mt-2">Description</h4>
+            <p className=" mt-2 text-xl">{lecture.description}</p>
           </div>
         </div>
       )}

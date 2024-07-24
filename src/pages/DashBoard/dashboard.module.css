@@ -5,20 +5,20 @@
   height: calc(100vh - 60px);
 }
 
-.dashboard-wrapper {
+.dashboardWrapper {
   display: flex;
   width: 100%;
   height: calc(100vh - 60px);
 }
 
-.main__body__dashboard {
-  flex: 1;
+.mainBodyDashboard {
+  width: 100%;
   margin-left: 10%;
   margin-right: 10%;
   overflow-y: auto;
 }
 
-.dashboard-header {
+.dashboardHeader {
   display: flex;
   justify-content: space-between;
   margin: 10px 0;
@@ -27,7 +27,7 @@
   border-radius: 8px;
 }
 
-.course__container {
+.courseContainer {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
@@ -37,26 +37,22 @@
   max-height: calc(100vh - 150px);
 }
 
-.course__wrapper {
-  display: flex;
-}
-
-.course__Card {
+.courseCard {
   margin-top: 10px;
 }
 
 @media screen and (max-width: 680px) {
-  .dashboard-link{
+  .dashboardLink {
     display: none;
   }
 
-  .main__body__dashboard {
+  .mainBodyDashboard {
     margin-left: 20%;
     margin-right: 5%;
     overflow-y: scroll;
   }
 
-  .course__wrapper {
+  .courseWrapper {
     flex: 1 1 100%;
   }
 }

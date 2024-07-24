@@ -71,6 +71,6 @@
 
 @media (max-width: 768px) {
   .allcourses-course-card {
-    width: 100%;
+    width: 80%;
   }
 }

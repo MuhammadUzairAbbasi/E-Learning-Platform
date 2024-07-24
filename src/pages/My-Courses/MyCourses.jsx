@@ -1,32 +1,56 @@
-import React, { useState } from 'react';
-import { Container, Typography, Box } from '@mui/material';
-import CardOfMyCourse from './cardOfCourse/CardOfMyCourse';
-import CourseData from '../DashBoard/FakeData/CourseData';
-import StudentSidebar from '../StudentSidebar/StudentSidebar';
-import './myCourses.css';
+import React, { useContext, useEffect, useState } from "react";
+import { Container, Typography, Box } from "@mui/material";
+import CardOfMyCourse from "./cardOfCourse/CardOfMyCourse";
+import StudentSidebar from "../StudentSidebar/StudentSidebar";
+import styles from "./myCourses.module.css";
+import { baseServerUrl } from "../../constants";
+import { UserContext } from "../../App";
+import axios from "axios";
 
 const MyCourses = () => {
   const [isSidebarExpanded, setSidebarExpanded] = useState(false);
+  const [courses, setCourses] = useState([]);
+  const { user } = useContext(UserContext);
 
   const toggleSidebar = () => {
     setSidebarExpanded(!isSidebarExpanded);
   };
 
+  useEffect(() => {
+    const fetchEnrolledCourses = async () => {
+      try {
+        const { data } = await axios.get(
+          `${baseServerUrl}/api/enroll/${user._id}/enrolled-courses`
+        );
+        setCourses(data);
+      } catch (error) {
+        console.log("No Courses enrolled", error);
+      }
+    };
+
+    fetchEnrolledCourses();
+  }, [user._id]);
+
   return (
-    <div className="my-courses">
+    <div className={styles.myCourses}>
       <StudentSidebar
         isSidebarExpanded={isSidebarExpanded}
         toggleSidebar={toggleSidebar}
       />
-      <div className="mycourses-main-content">
+      <div className={styles.mycoursesMainContent}>
         <Container>
-          <Box className="heading-container">
-            <Typography sx={{'fontWeight':600}} className="text-left heading" variant="h4" color="primary">
+          <Box className={styles.headingContainer}>
+            <Typography
+              sx={{ fontWeight: 600 }}
+              className={styles.heading}
+              variant="h4"
+              color="primary"
+            >
               My Courses
             </Typography>
           </Box>
-          <div className="card-container">
-            {CourseData.map((course, index) => (
+          <div className={styles.cardContainer}>
+            {courses.map((course, index) => (
               <CardOfMyCourse key={index} course={course} />
             ))}
           </div>

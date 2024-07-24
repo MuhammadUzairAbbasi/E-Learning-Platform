@@ -9,7 +9,6 @@ import { baseServerUrl } from "../../constants";
 const AllCourses = () => {
   const [isSidebarExpanded, setSidebarExpanded] = useState(false);
   const [courses, setCourses] = useState([]);
-  const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
   const toggleSidebar = () => {
@@ -19,21 +18,19 @@ const AllCourses = () => {
   useEffect(() => {
     const fetchCourses = async () => {
       try {
-        const response = await axios.get(`${baseServerUrl}/api/courses/getcourses`);
+        const response = await axios.get(
+          `${baseServerUrl}/api/courses/getcourses`
+        );
         setCourses(response.data);
       } catch (err) {
         setError(err.message);
-      } finally {
-        setLoading(false);
-      }
+      } 
     };
 
     fetchCourses();
   }, []);
 
-  if (loading) {
-    return <Typography variant="h5">Loading...</Typography>;
-  }
+ 
 
   if (error) {
     return <Typography variant="h5">Error: {error}</Typography>;

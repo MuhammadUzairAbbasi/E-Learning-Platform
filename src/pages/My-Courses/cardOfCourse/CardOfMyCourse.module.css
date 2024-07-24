@@ -1,5 +1,5 @@
 /* Card container */
-.course-card {
+.courseCard {
   display: flex;
   flex-direction: column;
   background-color: #ffffff;
@@ -13,7 +13,7 @@
 }
 
 /* Course image */
-.course-image {
+.courseImage {
   height: 150px;
   /* Reduced height for the course thumbnail */
   width: 100%;
@@ -23,23 +23,25 @@
 }
 
 /* Course content */
-.course-content {
+.courseContent {
   display: flex;
   flex-direction: column;
   padding: 15px;
   flex-grow: 1;
+  gap: 10px; /* Add gap between content items */
 }
 
 /* Course title */
-.course-title {
+.courseTitle {
   font-size: 1.1rem;
   /* Adjusted font size for the title */
   font-weight: bold;
   margin-bottom: 10px;
+  color: #333333;
 }
 
 /* Course description */
-.course-description {
+.courseDescription {
   color: #6c757d;
   margin-bottom: 15px;
   font-size: 0.9rem;
@@ -47,20 +49,35 @@
 }
 
 /* Course details */
-.course-details {
+.courseDetails {
   margin-top: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 5px; /* Add gap between detail items */
 }
 
 /* Number of lectures */
-.course-lectures {
+.courseLectures {
   color: #6c757d;
   margin-bottom: 10px;
   font-size: 0.9rem;
   /* Adjusted font size for the lecture count */
 }
 
+/* Course status */
+.courseStatus {
+  color: #6c757d;
+  font-size: 0.9rem;
+}
+
+/* Course enrollment date */
+.courseEnrollmentDate {
+  color: #6c757d;
+  font-size: 0.9rem;
+}
+
 /* Go to Course button */
-.course-button {
+.courseButton {
   width: 100%;
   background-color: #007bff;
   color: #ffffff;
@@ -71,13 +88,12 @@
   transition: background-color 0.3s;
 }
 
-.course-button:hover {
+.courseButton:hover {
   background-color: #0056b3;
 }
 
 @media (max-width: 768px) {
-  .course-card {
-      width: 250px;
-     
-    }
+  .courseCard {
+    width: 250px;
+  }
 }

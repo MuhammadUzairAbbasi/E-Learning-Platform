@@ -41,6 +41,9 @@ const CourseTable = ({ courses, handleDeleteCourse }) => {
                 <TableSortLabel>Thumbnail</TableSortLabel>
               </TableCell>
               <TableCell align="center" className={styles.th}>
+                <TableSortLabel>Price ($)</TableSortLabel>
+              </TableCell>
+              <TableCell align="center" className={styles.th}>
                 Actions
               </TableCell>
             </TableRow>
@@ -62,6 +65,9 @@ const CourseTable = ({ courses, handleDeleteCourse }) => {
                       className={styles.thumbnail}
                     />
                   </div>
+                </TableCell>
+                <TableCell align="center" className={styles.td}>
+                  {course.price}
                 </TableCell>
                 <TableCell align="center">
                   <Link to={`/courses/${course._id}`}>

@@ -1,52 +1,73 @@
-import React, { useContext, useState } from "react";
-import { Container ,Typography ,Box } from "@mui/material";
-import { Link } from "react-router-dom";
-import CourseData from "./FakeData/CourseData";
+import React, { useContext, useEffect, useState } from "react";
+import { Container, Typography, Box } from "@mui/material";
 import CourseCard from "./CourseCard/CourseCard";
 import StudentSidebar from "../StudentSidebar/StudentSidebar";
-import "./dashboard.css";
+import styles from "./dashboard.module.css"; // Import CSS Module
 import { UserContext } from "../../App";
+import axios from "axios";
+import { baseServerUrl } from "../../constants";
 
 const Dashboard = () => {
   const { user } = useContext(UserContext);
-  console.log(user.role);
   const [isSidebarExpanded, setSidebarExpanded] = useState(false);
+  const [courseData, setCourseData] = useState([]);
+
+  useEffect(() => {
+    const fetchEnrolledCourses = async () => {
+      try {
+        const response = await axios.get(
+          `${baseServerUrl}/api/enroll/${user._id}/enrolled-courses`
+        );
+        setCourseData(response.data); // Set the fetched data to state
+      } catch (error) {
+        console.error("No courses enrolled:", error);
+      }
+    };
+
+    fetchEnrolledCourses();
+  }, [user._id]);
 
   const toggleSidebar = () => {
     setSidebarExpanded(!isSidebarExpanded);
   };
 
   return (
-    <div className="dashboard">
-      <div className="dashboard-wrapper">
+    <div className={styles.dashboard}>
+      <div className={styles.dashboardWrapper}>
         <StudentSidebar
           isSidebarExpanded={isSidebarExpanded}
           toggleSidebar={toggleSidebar}
         />
-        <div className="main__body__dashboard">
+        <div className={styles.mainBodyDashboard}>
           <Container>
-            <Box className="dashboard-header">
-            <Typography sx={{'fontWeight':600}} className="text-left heading" variant="h4" color="primary">
-              {user && user.username}
-            </Typography>
-            <Typography className="text-right heading dashboard-link" variant="h4" color="primary">
-              Dashboard
-            </Typography>
-            
-          </Box>
+            <Box className={styles.dashboardHeader}>
+              <Typography
+                sx={{ fontWeight: 600 }}
+                className="text-left heading"
+                variant="h4"
+                color="primary"
+              >
+                {user && user.username}
+              </Typography>
+              <Typography
+                className={styles.dashboardLink}
+                variant="h4"
+                color="primary"
+              >
+                Dashboard
+              </Typography>
+            </Box>
           </Container>
           <Container>
-            <div className="course__container">
-              {CourseData.map((course, index) => (
+            <div className={styles.courseContainer}>
+              {courseData.map((course) => (
                 <CourseCard
-                    key={index}
-                    title={course.title}
-                    name={course.name}
-                    img={course.thumbnail}
-                    date={course.date}
-                    lectures={course.lectures}
-                    progress={course.progress}
-                  />
+                  key={course._id}
+                  name={course.course[0].name}
+                  img={course.course[0].thumbnail}
+                  date={course.enrollmentDate}
+                  progress={course.progress}
+                />
               ))}
             </div>
           </Container>

@@ -23,6 +23,7 @@ import StudentInfo from "./pages/Admin/Student/StudentInfo.jsx";
 import AdminDashboard from "./pages/Admin/AdminDashboard/AdminDashboard.jsx";
 import CourseTable from "./pages/Admin/Course/CourseTable/CourseTable.jsx";
 import CoursePage from "./pages/Admin/Course/CoursePage/CoursePage.jsx";
+import Checkout from "./pages/All-Course/cardOfCourse/CheckOutForm/CheckoutForm.jsx";
 // Create UserContext
 export const UserContext = createContext();
 
@@ -60,7 +61,11 @@ const ConditionalRoutes = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    if (!user && location.pathname !== "/login" && location.pathname !== "/register") {
+    if (
+      !user &&
+      location.pathname !== "/login" &&
+      location.pathname !== "/register"
+    ) {
       navigate("/login");
     }
   }, [user, location.pathname, navigate]);
@@ -101,21 +106,34 @@ const ConditionalRoutes = () => {
           path="/register"
           element={user ? <Navigate to="/" /> : <Register />}
         />
-        <Route path="/courses" element={renderProtectedRoute(AllCourses)} />
-        <Route path="/profile" element={renderProtectedRoute(Profile)} />
-        <Route path="/mycourses" element={renderProtectedRoute(MyCourses)} />
-        <Route path="/allcourses" element={renderProtectedRoute(AllCourses)} />
         <Route
-          path="/courseinfo/:title"
-          element={renderProtectedRoute(CourseInfo)}
+          path="/profile"
+          element={renderProtectedRoute(Profile, "Student")}
         />
         <Route
-          path="/admincourses"
-          element={renderProtectedRoute(AdminCourses, "Admin")}
+          path="/mycourses"
+          element={renderProtectedRoute(MyCourses, "Student")}
+        />
+        <Route
+          path="/allcourses"
+          element={renderProtectedRoute(AllCourses, "Student")}
+        />
+
+        <Route
+          path="/courseinfo/:courseId"
+          element={renderProtectedRoute(CourseInfo, "Student")}
+        />
+        <Route
+          path="/checkout"
+          element={renderProtectedRoute(Checkout, "Student")}
         />
         <Route
           path="/admindashboard"
           element={renderProtectedRoute(AdminDashboard, "Admin")}
+        />
+        <Route
+          path="/admincourses"
+          element={renderProtectedRoute(AdminCourses, "Admin")}
         />
         <Route
           path="/adminstudentinfo"
@@ -127,7 +145,7 @@ const ConditionalRoutes = () => {
         />
         <Route
           path="/courses/:courseId"
-          element={renderProtectedRoute(CoursePage)}
+          element={renderProtectedRoute(CoursePage, "Admin")}
         />
 
         <Route path="*" element={<Navigate to="/404" />} />
@@ -136,6 +154,3 @@ const ConditionalRoutes = () => {
     </>
   );
 };
-
-
-

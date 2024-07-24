@@ -1,37 +1,57 @@
 import React, { useState } from "react";
-import { Modal, Typography, TextField, Box, Button } from "@mui/material";
+import {
+  Modal,
+  Typography,
+  TextField,
+  Box,
+  Button,
+  FormControl,
+  FormLabel,
+  RadioGroup,
+  FormControlLabel,
+  Radio,
+} from "@mui/material";
 import axios from "axios";
 import { baseServerUrl } from "../../../../../constants";
 
 const UploadLectureModal = ({ open, handleClose, courseId, addLecture }) => {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
-  const [pdfFile, setPdfFile] = useState(null);
+  const [videoType, setVideoType] = useState("link");
+  const [videoLink, setVideoLink] = useState("");
   const [videoFile, setVideoFile] = useState(null);
-  const [pdfLabel, setPdfLabel] = useState("");
   const [videoLabel, setVideoLabel] = useState("");
 
-  const handleFileChange = (e, setFile, setLabel) => {
+  const handleFileChange = (e) => {
     const file = e.target.files[0];
     if (file) {
-      setFile(file);
-      setLabel(file.name);
+      setVideoFile(file);
+      setVideoLabel(file.name);
     }
+  };
+
+  const handleVideoTypeChange = (e) => {
+    setVideoType(e.target.value);
+    setVideoLink("");
+    setVideoFile(null);
+    setVideoLabel("");
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-         const formData = new FormData();
-         formData.append("title", title);
-         formData.append("description", description);
-         if (pdfFile) {
-           formData.append("pdf", pdfFile);
-         }
-         if (videoFile) {
-           formData.append("video", videoFile);
-         }
-         console.log(pdfFile,videoFile);
+      const formData = new FormData();
+      formData.append("title", title);
+      formData.append("description", description);
+      formData.append("courseId", courseId);
+      formData.append("videoType", videoType);
+
+      if (videoType === "link") {
+        formData.append("videoLink", videoLink);
+      } else if (videoType === "file") {
+        formData.append("videoFile", videoFile);
+      }
+
       const response = await axios.post(
         `${baseServerUrl}/api/courses/${courseId}/addlecture`,
         formData,
@@ -42,17 +62,14 @@ const UploadLectureModal = ({ open, handleClose, courseId, addLecture }) => {
       // Reset form fields
       setTitle("");
       setDescription("");
-      setPdfFile(null);
+      setVideoLink("");
       setVideoFile(null);
-      setPdfLabel("");
       setVideoLabel("");
       handleClose();
     } catch (error) {
       console.error("Error uploading lecture:", error);
     }
   };
-
- 
 
   return (
     <Modal open={open} onClose={handleClose}>
@@ -91,28 +108,50 @@ const UploadLectureModal = ({ open, handleClose, courseId, addLecture }) => {
             onChange={(e) => setDescription(e.target.value)}
             sx={{ mb: 2 }}
           />
-          <div className="input__file">
-            <label htmlFor="pdf-file">PDF File</label>
-            <input
-              type="file"
-              id="pdf-file"
-              accept="application/pdf"
-              onChange={(e) => handleFileChange(e, setPdfFile, setPdfLabel)}
-              className="inputfile__style"
-            />
-            <label>{pdfLabel || "Choose PDF"}</label>
-          </div>
-          <div className="input__file">
-            <label htmlFor="video-file">Video File</label>
-            <input
-              type="file"
-              id="video-file"
-              accept="video/*"
-              onChange={(e) => handleFileChange(e, setVideoFile, setVideoLabel)}
-              className="inputfile__style"
-            />
-            <label>{videoLabel || "Choose Video"}</label>
-          </div>
+          <FormControl component="fieldset" sx={{ mb: 2 }}>
+            <FormLabel component="legend">Video Upload Option</FormLabel>
+            <RadioGroup
+              name="videoType"
+              value={videoType}
+              onChange={handleVideoTypeChange}
+            >
+              <Box sx={{ display: "flex", gap: 2 }}>
+                <FormControlLabel
+                  value="link"
+                  control={<Radio />}
+                  label="Video Link"
+                />
+                <FormControlLabel
+                  value="file"
+                  control={<Radio />}
+                  label="Video File"
+                />
+              </Box>
+            </RadioGroup>
+          </FormControl>
+          {videoType === "link" ? (
+            <div>
+              <TextField
+                fullWidth
+                required
+                label="Video URL"
+                value={videoLink}
+                onChange={(e) => setVideoLink(e.target.value)}
+                sx={{ mb: 2 }}
+              />{" "}
+            </div>
+          ) : (
+            <div className="input__file">
+              <input
+                type="file"
+                id="video-file"
+                accept="video/*"
+                onChange={handleFileChange}
+                className="inputfile__style"
+              />
+              <label>{videoLabel || "Choose Video"}</label>
+            </div>
+          )}
           <Button
             type="submit"
             color="primary"

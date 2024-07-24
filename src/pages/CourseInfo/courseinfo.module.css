@@ -1,4 +1,4 @@
-/* CoursePage.module.css */
+/* CourseInfo.module.css */
 .flexContainer {
   display: flex;
   height: calc(100vh - 60px); /* Full height minus header */
@@ -26,16 +26,8 @@
   font-size: 1.5rem; /* Adjust font size */
 }
 
-.uploadButton {
-  background-color: rgb(6, 21, 241);
-  color: white;
-  padding: 0.5rem 0.75rem; /* Adjust padding */
-  border-radius: 0.375rem; /* Rounded */
-  margin-right: 1rem; /* Margin for spacing */
-}
-
 .container {
-  margin-top: 1.25rem; /* Space between upload button and lectures */
+  margin-top: 1.25rem; /* Space between header and lectures */
 }
 
 .lecturesSection {

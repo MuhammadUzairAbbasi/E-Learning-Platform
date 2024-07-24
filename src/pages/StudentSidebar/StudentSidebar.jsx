@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import { IconButton, Divider } from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
@@ -10,12 +10,15 @@ import LibraryBooksIcon from "@mui/icons-material/LibraryBooks";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import Sidebar from "../../components/Sidebar/Sidebar";
 import './studentsidebar.css';
+import { UserContext } from "../../App";
 
 const StudentSidebar = ({ isSidebarExpanded, toggleSidebar }) => {
+  const {user,setUser}=useContext(UserContext);
   const navigate = useNavigate();
   const handleLogout = () => {
     // Remove user data from local storage
-    localStorage.removeItem('user'); // Replace 'user' with the actual key you use to store user data
+    localStorage.removeItem('user'); 
+    setUser(false);// Replace 'user' with the actual key you use to store user data
     // Redirect to login page
     navigate('/login')
   };
@@ -52,12 +55,6 @@ const StudentSidebar = ({ isSidebarExpanded, toggleSidebar }) => {
         Icon={AccountCircleIcon}
         title="Profile"
         link="/profile"
-        isSidebarExpanded={isSidebarExpanded}
-      />
-      <Sidebar
-        Icon={SettingsApplicationsIcon}
-        title="Settings"
-        link="/settings"
         isSidebarExpanded={isSidebarExpanded}
       />
       <Divider component="div" />

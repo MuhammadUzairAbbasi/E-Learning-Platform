@@ -1,52 +1,66 @@
-// LectureItem.js
-import React from 'react';
+import React from "react";
+import ReactPlayer from "react-player";
+import { MdCheckCircle, MdRadioButtonUnchecked } from "react-icons/md";
+import { FaCaretDown, FaCaretUp } from "react-icons/fa";
 
-const LectureItem = ({ lecture, toggleLecture }) => {
+const LectureItem = ({ lecture, toggleLecture, markAsCompleted }) => {
+  console.log(lecture);
   return (
-    <div className="lecture-item mb-4 bg-green-100 rounded-lg p-4">
+    <div className="lecture-item mb-4 bg-white rounded-lg shadow-lg p-4 w-full">
       <div className="flex justify-between items-center">
         <div
-          className="lecture-title cursor-pointer text-xl font-semibold"
-          onClick={() => toggleLecture(lecture.id)}
+          className="lecture-title cursor-pointer text-2xl font-bold text-gray-800"
+          onClick={() => toggleLecture(lecture._id)}
+          style={{ textTransform: "uppercase" }}
         >
           {lecture.title}
         </div>
-        <button
-          className="p-2 rounded-full bg-gray-200 text-gray-600 flex items-center justify-center"
-          onClick={() => toggleLecture(lecture.id)}
-        >
-          {lecture.isOpen ? (
-            <svg
-              className="w-4 h-4 stroke-current"
-              fill="none"
-              viewBox="0 0 24 24"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7" />
-            </svg>
-          ) : (
-            <svg
-              className="w-4 h-4 stroke-current"
-              fill="none"
-              viewBox="0 0 24 24"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 15l7-7 7 7" />
-            </svg>
-          )}
-        </button>
+        <div className="flex items-center">
+          <button
+            className="p-2 rounded-full bg-gray-200 text-gray-600 flex items-center justify-center mr-2"
+            onClick={() => toggleLecture(lecture._id)}
+          >
+            {lecture.isOpen ? (
+              <FaCaretUp className="w-4 h-4" />
+            ) : (
+              <FaCaretDown className="w-4 h-4" />
+            )}
+          </button>
+          <button
+            className={`p-2 rounded-full flex items-center justify-center ml-2 ${
+              lecture.completed
+                ? "bg-green-500 text-white border border-green-700"
+                : "bg-gray-300 text-gray-700 border border-gray-500"
+            }`}
+            onClick={() => markAsCompleted(lecture._id)}
+            title={
+              lecture.completed ? "Mark as Incomplete" : "Mark as Completed"
+            }
+          >
+            {lecture.completed ? (
+              <MdCheckCircle className="w-5 h-5" />
+            ) : (
+              <MdRadioButtonUnchecked className="w-5 h-5" />
+            )}
+          </button>
+        </div>
       </div>
       {lecture.isOpen && (
-        <div className="lecture-details mt-2 pl-4">
-          <p>{lecture.description}</p>
-          <a
-            href={lecture.pdf}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-blue-500 underline"
-          >
-            Download PDF
-          </a>
+        <div className="lecture-details mt-4">
+          <div className="flex justify-center">
+            {lecture.videoLink && (
+              <div
+                className="video-player flex flex-col items-center"
+                style={{ width: "100%" }}
+              >
+                <ReactPlayer url={lecture.videoLink} controls width="100%" />
+              </div>
+            )}
+          </div>
+          <div>
+            <h4 className="text-2xl font-semibold mt-2">Description</h4>
+            <p className="mt-2 text-xl">{lecture.description}</p>
+          </div>
         </div>
       )}
     </div>

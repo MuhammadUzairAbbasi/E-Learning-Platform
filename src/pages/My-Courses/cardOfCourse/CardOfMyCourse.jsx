@@ -1,31 +1,30 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
-import "./CardOfMyCourse.css"; // Import the CSS file for styling
+import styles from "./CardOfMyCourse.module.css"; // Import the CSS module
 
 const CardOfMyCourse = ({ course }) => {
   const navigate = useNavigate();
-
-  const handleGoToCourse = () => {
-    navigate(`/course-info/${course.title}`, {
-      state: {
-        title: course.title,
-        name: course.name,
-        img: course.thumbnail,
-        date: course.date,
-        lectures: course.lectures,
-      },
-    });
-  };
-
+  const { progress, status, enrollmentDate } = course;
+  const { _id, name, description, thumbnail } = course.course[0]; // Access the first item in the course array
+  console.log(_id);
   return (
-    <div className="course-card">
-      <img src={course.thumbnail} alt={course.name} className="course-image" />
-      <div className="course-content">
-        <h2 className="course-title">{course.name}</h2>
-        <p className="course-description">{course.description}</p>
-        <div className="course-details">
-          <p className="course-lectures">Lectures: {course.lectures.length}</p>
-          <button className="course-button" onClick={handleGoToCourse}>
+    <div className={styles.courseCard}>
+      <img src={thumbnail} alt={name} className={styles.courseImage} />
+      <div className={styles.courseContent}>
+        <h2 className={styles.courseTitle}>{name}</h2>
+        <p className={styles.courseDescription}>{description}</p>
+        <div className={styles.courseDetails}>
+          <p className={styles.courseLectures}>
+            Lectures: {progress}% completed
+          </p>
+          <p className={styles.courseStatus}>Status: {status}</p>
+          <p className={styles.courseEnrollmentDate}>
+            Enrolled on: {new Date(enrollmentDate).toLocaleDateString()}
+          </p>
+          <button
+            className={styles.courseButton}
+            onClick={() => navigate(`/courseinfo/${_id}`)}
+          >
             Go to Course
           </button>
         </div>

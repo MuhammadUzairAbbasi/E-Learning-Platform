@@ -7,15 +7,22 @@ const AddCourseModal = ({ open, handleClose, addCourse }) => {
   const [courseName, setCourseName] = useState("");
   const [courseDescription, setCourseDescription] = useState("");
   const [courseThumbnail, setCourseThumbnail] = useState(null);
+  const [coursePrice, setCoursePrice] = useState("");
   const [imgLabel, setImgLabel] = useState("");
+  const [error, setError] = useState("");
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    if (coursePrice < 0) {
+      setError("Course price cannot be less than 5.");
+      return;
+    }
     try {
       const formData = new FormData();
       formData.append("courseName", courseName);
       formData.append("courseDescription", courseDescription);
       formData.append("courseThumbnail", courseThumbnail);
+      formData.append("coursePrice", coursePrice);
       formData.append("lectures", JSON.stringify([])); // Assuming lectures is an empty array initially
 
       const response = await axios.post(
@@ -31,10 +38,13 @@ const AddCourseModal = ({ open, handleClose, addCourse }) => {
       setCourseName("");
       setCourseDescription("");
       setCourseThumbnail(null);
+      setCoursePrice("");
       setImgLabel("");
+      setError("");
       handleClose();
     } catch (error) {
       console.error("Error adding course:", error);
+      setError("Error adding course. Please try again.");
     }
   };
 
@@ -97,6 +107,16 @@ const AddCourseModal = ({ open, handleClose, addCourse }) => {
             onChange={(e) => setCourseDescription(e.target.value)}
             sx={{ mb: 2 }}
           />
+          <TextField
+            fullWidth
+            required
+            label="Course Price"
+            type="number"
+            value={coursePrice}
+            onChange={(e) => setCoursePrice(e.target.value)}
+            sx={{ mb: 2 }}
+            InputProps={{ inputProps: { min: 0 } }} // Setting minimum value in the input field
+          />
           <div className="input__file">
             <label htmlFor="course-thumbnail">Course Thumbnail</label>
             <input
@@ -109,6 +129,11 @@ const AddCourseModal = ({ open, handleClose, addCourse }) => {
             />
             <label>{imgLabel || "Choose photo"}</label>
           </div>
+          {error && (
+            <Typography color="error" sx={{ mt: 2 }}>
+              {error}
+            </Typography>
+          )}
           <Button
             type="submit"
             color="primary"

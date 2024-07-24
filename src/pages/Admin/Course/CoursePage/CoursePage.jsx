@@ -90,9 +90,9 @@ const CoursePage = () => {
           </div>
         </div>
 
-        <div className="flex justify-end m-5">
-          <Button className={styles.uploadButton} onClick={handleUploadClick}>
-            <AiOutlinePlus className="mr-1" />
+        <div className="flex flex-row justify-end m-3 font-extrabold">
+          <Button variant="contained" size="large" className={styles.uploadButton} onClick={handleUploadClick}>
+            <AiOutlinePlus className="mr-3 text-large" />
             Upload Lecture
           </Button>
         </div>
@@ -100,7 +100,7 @@ const CoursePage = () => {
         <div className={styles.flex1}>
           <div className={styles.container}>
             <div className={styles.lecturesSection}>
-              <h4 className="text-xl font-semibold mb-3">Lectures</h4>
+              <h4 className="text-3xl font-bold mb-2">Lectures</h4>
               {courseLectures.length > 0 ? (
                 courseLectures.map((lecture, index) => (
                   <LectureItem
