@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { loadStripe } from "@stripe/stripe-js";
+import { toast } from "react-toastify";
 import {
   Elements,
   PaymentElement,
@@ -53,7 +54,8 @@ const CheckoutForm = ({ userId, courseId }) => {
 
     if (error) {
       console.error(error);
-      alert("Payment error. Please try again.");
+      toast.error("Payment error. Please try again.");
+      
     } else if (paymentIntent.status === "succeeded") {
       // Handle course enrollment directly after payment
       try {
@@ -62,14 +64,16 @@ const CheckoutForm = ({ userId, courseId }) => {
           userId,
           courseId,
         });
-        alert("Payment successful! You are now enrolled in the course.");
+        toast.success("Payment successful! You are now enrolled in the course.");
+        
         navigate("/mycourses");
       } catch (error) {
-        console.error("Error enrolling in course:", error);
-        alert("Enrollment error. Please try again.");
+        toast.error("Error enrolling in course:", error);
+        toast.error("Enrollment error. Please try again.");
+        
       }
     } else {
-      alert("Payment failed. Please try again.");
+      toast.error("Payment failed. Please try again.");
     }
   };
 
