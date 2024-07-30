@@ -1,27 +1,63 @@
 .profilepage {
-    display: flex;
-    width: 100%;
-    height: calc(100vh - 60px);
-    background-color: #e0f7fa;
-    /* Adjust as per your header height */
-    box-sizing: border-box;
-    overflow: auto;
+  display: flex;
+  width: 100%;
+  height: calc(100vh - 60px);
+  background-color: #e0f7fa;
+  box-sizing: border-box;
+  overflow: auto;
 }
 
 .profileinfo {
-    width: 60%;
-    margin-left: 20%;
-    height: calc(100vh - 200px);
-    /* Adjust max-width as per your design */
-    
-    padding: 20px;
-    box-sizing: border-box;
+  width: 100%;
+  margin-left: 15%;
+  height: calc(100vh - 220px);
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+.profileinfo .avatar-container {
+  position: relative;
 }
 
 .profileinfo .avatar {
-    width: 80px;
-    height: 80px;
-    border: 2px solid #1976d2;
-    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
-    cursor: pointer;
+  width: 110px;
+  height: 110px;
+  border: 2px solid #1976d2;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+  cursor: pointer;
+}
+
+.profileinfo .camera-icon {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  background-color: #1976d2;
+  border-radius: 50%;
+  padding: 5px;
+  cursor: pointer;
+  color: white;
+}
+
+@media screen and (max-width: 768px) {
+  .profilepicture {
+    display: none;
+  }
+
+  .profileinfo .avatar {
+    width: 90px;
+    height: 90px;
+  }
+
+  .profileinfo .avatar-container .camera-icon {
+    bottom: -5px;
+    right: -5px;
+  }
+
+  .profileinfo .username {
+    font-size: 1.5rem;
+  }
+
+  .profileinfo .email {
+    font-size: 1rem;
+  }
 }

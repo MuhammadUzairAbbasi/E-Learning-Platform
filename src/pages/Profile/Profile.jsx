@@ -15,19 +15,19 @@ import { UserContext } from "../../App";
 import "./Profile.css";
 import { baseServerUrl } from "../../constants";
 import StudentSidebar from "../StudentSidebar/StudentSidebar";
-import {toast} from 'react-toastify'
+import { toast } from "react-toastify";
 
 const Profile = () => {
   const [isSidebarExpanded, setSidebarExpanded] = useState(false);
   const [profile, setProfile] = useState({});
   const [profilePicture, setProfilePicture] = useState(null);
-  // const [errorMessage, setErrorMessage] = useState("");
   const { user } = useContext(UserContext);
 
   useEffect(() => {
     const fetchProfile = async () => {
       try {
-        const response = await axios.get(`${baseServerUrl}/api/users/profile/${user._id}`
+        const response = await axios.get(
+          `${baseServerUrl}/api/users/profile/${user._id}`
         );
         console.log(response.data);
         setProfile(response.data);
@@ -59,7 +59,6 @@ const Profile = () => {
     const { firstName, lastName, phoneNumber, newPassword, confirmPassword } =
       profile;
 
-    // Basic validation checks
     if (
       !firstName &&
       !lastName &&
@@ -67,32 +66,26 @@ const Profile = () => {
       !newPassword &&
       !confirmPassword
     ) {
-      // setErrorMessage("Please fill in at least one field.");
       toast.warning("Please fill in at least one field.");
       return;
     }
     if (phoneNumber && !/^\d+$/.test(phoneNumber)) {
-      // setErrorMessage("Phone number must contain only digits.");
       toast.warning("Phone number must contain only digits");
       return;
     }
     if (phoneNumber && phoneNumber.length !== 11) {
-      // setErrorMessage("Phone number must be 11 digits long.");
       toast.warning("Phone number must be 11 digits long.");
       return;
     }
     if (newPassword && newPassword.length < 8) {
-      // setErrorMessage("Password must be at least 8 characters long.");
       toast.warning("Password must be at least 8 characters long.");
       return;
     }
     if (newPassword !== confirmPassword) {
-      // setErrorMessage("Passwords do not match.");
       toast.warning("Passwords do not match.");
       return;
     }
 
-    // Construct the updates object
     const updates = {
       profilePicture,
       ...(firstName && { firstName }),
@@ -109,11 +102,11 @@ const Profile = () => {
 
       if (response.data) {
         setProfile(response.data);
-        toast.success("Profile Updated Successfully")
+        toast.success("Profile Updated Successfully");
       }
     } catch (error) {
       console.error("Error updating profile data:", error);
-      toast.error("Error Updating Profile")
+      toast.error("Error Updating Profile");
     }
   };
 
@@ -140,24 +133,9 @@ const Profile = () => {
             alignItems="center"
             sx={{ width: "100%", maxWidth: 600 }}
           >
-            <Box
-              display="flex"
-              flexDirection="column"
-              alignItems="center"
-              mr={4}
-            >
-              <Avatar
-                src={profilePicture}
-                className="avatar"
-                sx={{
-                  width: 100,
-                  height: 100,
-                  border: "2px solid #1976d2",
-                  boxShadow: "0px 0px 10px rgba(0, 0, 0, 0.2)",
-                  cursor: "pointer",
-                }}
-              />
-              <Box mt={2} textAlign="center" >
+            <Box className="avatar-container">
+              <Avatar src={profilePicture} className="avatar" />
+              <label htmlFor="upload-photo" className="camera-icon">
                 <input
                   accept="image/*"
                   style={{ display: "none" }}
@@ -165,28 +143,20 @@ const Profile = () => {
                   type="file"
                   onChange={handleProfilePictureChange}
                 />
-                <label htmlFor="upload-photo">
-                  <Button
-                    variant="contained"
-                    component="span"
-                    color="primary"
-                    size="large"
-                    startIcon={<PhotoCamera />}
-                  >
-                    Add Picture
-                  </Button>
-                </label>
-              </Box>
+                <PhotoCamera />
+              </label>
             </Box>
-            <Box>
+            <Box ml={4}>
               <Typography
                 variant="h4"
+                className="username"
                 sx={{ fontFamily: "Roboto, sans-serif", fontWeight: "bold" }}
               >
                 {profile.username}
               </Typography>
               <Typography
                 variant="h6"
+                className="email"
                 sx={{ fontFamily: "Roboto, sans-serif" }}
               >
                 {profile.email}
@@ -194,14 +164,6 @@ const Profile = () => {
             </Box>
           </Box>
         </Box>
-
-        {/* {errorMessage && (
-          <Box mb={2} textAlign="center">
-            <Typography variant="body1" color="error">
-              {errorMessage}
-            </Typography>
-          </Box>
-        )} */}
 
         <div className="profile details">
           <Card
