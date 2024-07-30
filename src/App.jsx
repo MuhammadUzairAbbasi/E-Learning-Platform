@@ -94,7 +94,7 @@ const ConditionalRoutes = () => {
               user.role === "Admin" ? (
                 <Navigate to="/admindashboard" />
               ) : (
-                <Dashboard />
+               < Navigate to="/dashboard" />
               )
             ) : (
               <Navigate to="/login" />
@@ -106,6 +106,7 @@ const ConditionalRoutes = () => {
           path="/register"
           element={user ? <Navigate to="/" /> : <Register />}
         />
+        <Route path="/dashboard" element={renderProtectedRoute(Dashboard,"Student")}/>
         <Route
           path="/profile"
           element={renderProtectedRoute(Profile, "Student")}

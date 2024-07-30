@@ -13,6 +13,7 @@ import {
 } from "@mui/material";
 import axios from "axios";
 import { baseServerUrl } from "../../../../../constants";
+import { toast } from "react-toastify";
 
 const UploadLectureModal = ({ open, handleClose, courseId, addLecture }) => {
   const [title, setTitle] = useState("");
@@ -66,8 +67,11 @@ const UploadLectureModal = ({ open, handleClose, courseId, addLecture }) => {
       setVideoFile(null);
       setVideoLabel("");
       handleClose();
+
+      toast.success("Lecture Uploaded Succesfully");
     } catch (error) {
       console.error("Error uploading lecture:", error);
+      toast.error("Error While Uploading Lecture");
     }
   };
 

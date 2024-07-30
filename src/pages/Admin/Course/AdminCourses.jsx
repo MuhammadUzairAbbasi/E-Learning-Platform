@@ -3,10 +3,11 @@ import { Button } from "@mui/material";
 import AdminSidebar from "../AdminSidebar/AdminSidebar";
 import AddCourseModal from "./AddCourseModal/AddCourseModal";
 import CourseTable from "./CourseTable/CourseTable";
-import add_icon from "./images/add-icon.svg";
 import axios from "axios";
 import "./AdminCourses.css";
+import AddIcon from "@mui/icons-material/Add";
 import { baseServerUrl } from "../../../constants";
+import { toast } from "react-toastify";
 
 const AdminCourses = () => {
   const [isSidebarExpanded, setSidebarExpanded] = useState(false);
@@ -55,8 +56,10 @@ const AdminCourses = () => {
       setCourses((prevCourses) =>
         prevCourses.filter((course) => course._id !== courseId)
       );
+      toast.success("Course Deleted")
     } catch (error) {
       console.error("Error deleting course:", error);
+      toast.error("Error While Deleting Course , Try Again Later");
     }
   };
 
@@ -81,7 +84,7 @@ const AdminCourses = () => {
                   marginBottom: 5,
                 }}
               >
-                <img src={add_icon} alt="Add Course" className="card-image" />
+                <AddIcon className="mr-2"/>
                 Add Course
               </Button>
             </div>

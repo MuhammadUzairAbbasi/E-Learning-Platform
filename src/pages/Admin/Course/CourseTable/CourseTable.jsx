@@ -26,24 +26,44 @@ const CourseTable = ({ courses, handleDeleteCourse }) => {
         sx={{ boxShadow: 3, borderRadius: 2, bgcolor: "#f5f5f5" }}
       >
         <Table
-          sx={{ width: "100%", borderCollapse: "collapse" }}
+          sx={{ minWidth: 650, fontFamily: "Arial, sans-serif" }}
           className={styles.table}
         >
           <TableHead className="sticky">
             <TableRow>
-              <TableCell align="center" className={styles.th}>
+              <TableCell
+                align="center"
+                className={styles.th}
+                sx={{ fontWeight: "bold", fontSize: "1rem", color: "#fff" }}
+              >
                 <TableSortLabel>Id</TableSortLabel>
               </TableCell>
-              <TableCell align="center" className={styles.th}>
+              <TableCell
+                align="center"
+                className={styles.th}
+                sx={{ fontWeight: "bold", fontSize: "1rem", color: "#fff" }}
+              >
                 <TableSortLabel>Name</TableSortLabel>
               </TableCell>
-              <TableCell align="center" className={styles.th}>
+              <TableCell
+                align="center"
+                className={styles.th}
+                sx={{ fontWeight: "bold", fontSize: "1rem", color: "#fff" }}
+              >
                 <TableSortLabel>Thumbnail</TableSortLabel>
               </TableCell>
-              <TableCell align="center" className={styles.th}>
+              <TableCell
+                align="center"
+                className={styles.th}
+                sx={{ fontWeight: "bold", fontSize: "1rem", color: "#fff" }}
+              >
                 <TableSortLabel>Price ($)</TableSortLabel>
               </TableCell>
-              <TableCell align="center" className={styles.th}>
+              <TableCell
+                align="center"
+                className={styles.th}
+                sx={{ fontWeight: "bold", fontSize: "1rem", color: "#fff" }}
+              >
                 Actions
               </TableCell>
             </TableRow>

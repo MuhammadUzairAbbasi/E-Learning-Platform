@@ -10,6 +10,7 @@ import github from "./images/github.svg";
 import linkedin from "./images/linkedin.svg";
 import axios from "axios";
 import { baseServerUrl } from "../../constants";
+import {toast} from "react-toastify";
 
 const Register = () => {
   const [username, setusername] = useState("");
@@ -44,9 +45,11 @@ const Register = () => {
           `${baseServerUrl}/api/auth/register`,
           user
         );
+        toast.success("Successfully Registered")
         navigate("/login");
         console.log("registered");
       } catch (err) {
+        toast.error("Cannot Registered User");
         console.log(err, "error haiii");
       }
     }

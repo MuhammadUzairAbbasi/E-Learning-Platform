@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Modal, Typography, TextField, Box, Button } from "@mui/material";
 import axios from "axios";
 import { baseServerUrl } from "../../../../constants";
+import { toast } from "react-toastify";
 
 const AddCourseModal = ({ open, handleClose, addCourse }) => {
   const [courseName, setCourseName] = useState("");
@@ -9,12 +10,13 @@ const AddCourseModal = ({ open, handleClose, addCourse }) => {
   const [courseThumbnail, setCourseThumbnail] = useState(null);
   const [coursePrice, setCoursePrice] = useState("");
   const [imgLabel, setImgLabel] = useState("");
-  const [error, setError] = useState("");
+  // const [error, setError] = useState("");
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if (coursePrice < 0) {
-      setError("Course price cannot be less than 5.");
+    if (coursePrice < 1) {
+      toast.warning("Course price cannot be less than 1.");
+      // setError("Course price cannot be less than 1.");
       return;
     }
     try {
@@ -40,11 +42,14 @@ const AddCourseModal = ({ open, handleClose, addCourse }) => {
       setCourseThumbnail(null);
       setCoursePrice("");
       setImgLabel("");
-      setError("");
+      // setError("");
       handleClose();
+
+      toast.success("Course Added Successfully");
     } catch (error) {
       console.error("Error adding course:", error);
-      setError("Error adding course. Please try again.");
+      toast.error("Error adding course. Please try again.");
+      // setError("Error adding course. Please try again.");
     }
   };
 
@@ -54,7 +59,8 @@ const AddCourseModal = ({ open, handleClose, addCourse }) => {
       setImgLabel(file.name);
       setCourseThumbnail(file);
     } else {
-      alert("Please upload a valid image file.");
+      toast.warning("Please upload a valid image file.");
+      // alert("Please upload a valid image file.");
       setCourseThumbnail(null);
       setImgLabel("");
     }
@@ -129,11 +135,7 @@ const AddCourseModal = ({ open, handleClose, addCourse }) => {
             />
             <label>{imgLabel || "Choose photo"}</label>
           </div>
-          {error && (
-            <Typography color="error" sx={{ mt: 2 }}>
-              {error}
-            </Typography>
-          )}
+          
           <Button
             type="submit"
             color="primary"

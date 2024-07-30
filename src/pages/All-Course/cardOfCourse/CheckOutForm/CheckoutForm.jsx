@@ -9,6 +9,7 @@ import {
 import axios from "axios";
 import { useNavigate, useLocation } from "react-router-dom";
 import { baseServerUrl } from "../../../../constants.js";
+import {toast} from "react-toastify"
 
 import "./checkoutform.css";
 
@@ -29,6 +30,7 @@ const CheckoutForm = ({ userId, courseId }) => {
         );
         setClientSecret(response.data.clientSecret);
       } catch (error) {
+        toast.info("There might be some problem try again later")
         console.error("Error creating payment intent:", error);
       }
     };
@@ -53,7 +55,8 @@ const CheckoutForm = ({ userId, courseId }) => {
 
     if (error) {
       console.error(error);
-      alert("Payment error. Please try again.");
+      toast.error("Payment error. Please try again.");
+      // alert("");
     } else if (paymentIntent.status === "succeeded") {
       // Handle course enrollment directly after payment
       try {
@@ -62,14 +65,17 @@ const CheckoutForm = ({ userId, courseId }) => {
           userId,
           courseId,
         });
-        alert("Payment successful! You are now enrolled in the course.");
+        toast.success("Payment successful! You are now enrolled in the course.");
+        // alert("");
         navigate("/mycourses");
       } catch (error) {
         console.error("Error enrolling in course:", error);
-        alert("Enrollment error. Please try again.");
+        toast.error("Enrollment error. Please try again.");
+        // alert("");
       }
     } else {
-      alert("Payment failed. Please try again.");
+      toast.error("Payment failed. Please try again.");
+      // alert("");
     }
   };
 

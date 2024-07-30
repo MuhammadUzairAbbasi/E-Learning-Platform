@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 import {
   IconButton,
   Table,
@@ -9,24 +9,27 @@ import {
   TableRow,
   Paper,
   TableSortLabel,
-} from '@mui/material';
-import axios from 'axios';
-import { Delete } from '@mui/icons-material';
-import { baseServerUrl } from '../../../../constants';
+} from "@mui/material";
+import axios from "axios";
+import { Delete } from "@mui/icons-material";
+import { baseServerUrl } from "../../../../constants";
+import { toast } from "react-toastify";
 
 const StudentTable = ({ students, setStudents }) => {
-  
   const handleDelete = async (id) => {
     try {
       await axios.delete(`${baseServerUrl}/api/users/users/${id}`);
       setStudents((prevStudents) =>
         prevStudents.filter((student) => student._id !== id)
       );
+
+      toast.success("User Successfully Deleted");
     } catch (error) {
       console.log(error);
+      toast.error("Error Deleting User, Try again Later");
     }
   };
-  
+
   return (
     <TableContainer
       component={Paper}

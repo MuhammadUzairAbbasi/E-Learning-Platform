@@ -16,10 +16,11 @@
 }
 
 .heading_container {
+  width: 100%;
   display: flex;
   justify-content: space-between; /* Adjusted for better spacing */
   align-items: center;
-  gap:30px;
+  gap: 30px;
   margin-bottom: 20px; /* Added margin for spacing */
   border-bottom: 3px solid green;
 }

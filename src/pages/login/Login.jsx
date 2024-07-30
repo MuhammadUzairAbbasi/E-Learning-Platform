@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import "./login.css";
 import { Link, useNavigate } from "react-router-dom";
 import Button from "react-bootstrap/Button";
@@ -13,10 +13,16 @@ import { UserContext } from "../../App";
 import { toast } from "react-toastify";
 
 const Login = () => {
-  const [email, setemail] = useState("");
-  const [password, setpassword] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
   const navigate = useNavigate();
   const { user, setUser } = useContext(UserContext);
+
+  useEffect(() => {
+    if (user) {
+      navigate(user.role === "Admin" ? "/admindashboard" : "/dashboard");
+    }
+  }, [user, navigate]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -25,14 +31,10 @@ const Login = () => {
       password,
     };
     try {
-      console.log(user);
       const res = await axios.post(`${baseServerUrl}/api/auth/login`, user);
-      console.log(res.data.role);
       localStorage.setItem("user", JSON.stringify(res.data));
-      console.log("login successfully");
       toast.success("Login Successfully");
-      //  setUser(true);
-      navigate("/");
+      setUser(res.data);
     } catch (err) {
       console.log(err, "error haiii");
       toast.error("Login Error");
@@ -54,7 +56,7 @@ const Login = () => {
               placeholder="Enter email"
               className="input-with-icon"
               onChange={(e) => {
-                setemail(e.target.value);
+                setEmail(e.target.value);
               }}
             />
           </div>
@@ -65,7 +67,7 @@ const Login = () => {
               placeholder="Password"
               className="input-with-icon"
               onChange={(e) => {
-                setpassword(e.target.value);
+                setPassword(e.target.value);
               }}
             />
           </div>
