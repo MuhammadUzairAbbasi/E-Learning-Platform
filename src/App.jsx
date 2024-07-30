@@ -24,6 +24,7 @@ import AdminDashboard from "./pages/Admin/AdminDashboard/AdminDashboard.jsx";
 import CourseTable from "./pages/Admin/Course/CourseTable/CourseTable.jsx";
 import CoursePage from "./pages/Admin/Course/CoursePage/CoursePage.jsx";
 import Checkout from "./pages/All-Course/cardOfCourse/CheckOutForm/CheckoutForm.jsx";
+import ForgotPassword from "./pages/forgot/Forgot.jsx";
 // Create UserContext
 export const UserContext = createContext();
 
@@ -64,7 +65,8 @@ const ConditionalRoutes = () => {
     if (
       !user &&
       location.pathname !== "/login" &&
-      location.pathname !== "/register"
+      location.pathname !== "/register" && 
+      location.pathname !== "/forgot-password"
     ) {
       navigate("/login");
     }
@@ -107,6 +109,7 @@ const ConditionalRoutes = () => {
           element={user ? <Navigate to="/" /> : <Register />}
         />
         <Route path="/dashboard" element={renderProtectedRoute(Dashboard,"Student")}/>
+        <Route  path="/forgot-password" element={<ForgotPassword/>}/>
         <Route
           path="/profile"
           element={renderProtectedRoute(Profile, "Student")}

@@ -1,4 +1,4 @@
-import React, { useContext, useState, useEffect } from "react";
+import React, { useContext, useState,useEffect } from "react";
 import "./login.css";
 import { Link, useNavigate } from "react-router-dom";
 import Button from "react-bootstrap/Button";
@@ -11,6 +11,7 @@ import axios from "axios";
 import { baseServerUrl } from "../../constants";
 import { UserContext } from "../../App";
 import { toast } from "react-toastify";
+
 
 const Login = () => {
   const [email, setEmail] = useState("");
@@ -34,10 +35,14 @@ const Login = () => {
       const res = await axios.post(`${baseServerUrl}/api/auth/login`, user);
       localStorage.setItem("user", JSON.stringify(res.data));
       toast.success("Login Successfully");
-      setUser(res.data);
+       setUser(res.data);
     } catch (err) {
       console.log(err, "error haiii");
-      toast.error("Login Error");
+      if (err.response && err.response.data && err.response.data.message) {
+        toast.error(err.response.data.message);
+      } else {
+        toast.error("Login Error");
+      }
     }
   };
 
@@ -49,6 +54,7 @@ const Login = () => {
           Login to Continue ...
         </h5>
         <Form className="w-full" onSubmit={handleSubmit}>
+         
           <div className="mb-4 form-group-icon">
             <FiMail className="text-xl input-icon" />
             <Form.Control
@@ -72,7 +78,7 @@ const Login = () => {
             />
           </div>
           <div className="text-right font-bold text-blue-500 mr-7">
-            <Link to="">Forget Password?</Link>
+            <Link to="/forgot-password">Forgot Password?</Link>
           </div>
           <Button
             variant="primary"
@@ -81,7 +87,7 @@ const Login = () => {
           >
             Log In
           </Button>
-          <div className="text-center  ">
+          <div className="text-center">
             <h5>
               Don't Have an Account?{" "}
               <Link to="/register" className="text-blue-500">

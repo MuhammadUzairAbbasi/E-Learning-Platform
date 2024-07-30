@@ -9,7 +9,7 @@ import {
 import axios from "axios";
 import { useNavigate, useLocation } from "react-router-dom";
 import { baseServerUrl } from "../../../../constants.js";
-import {toast} from "react-toastify"
+import { toast } from "react-toastify";
 
 import "./checkoutform.css";
 
@@ -30,7 +30,7 @@ const CheckoutForm = ({ userId, courseId }) => {
         );
         setClientSecret(response.data.clientSecret);
       } catch (error) {
-        toast.info("There might be some problem try again later")
+        toast.info("There might be some problem try again later");
         console.error("Error creating payment intent:", error);
       }
     };
@@ -65,7 +65,9 @@ const CheckoutForm = ({ userId, courseId }) => {
           userId,
           courseId,
         });
-        toast.success("Payment successful! You are now enrolled in the course.");
+        toast.success(
+          "Payment successful! You are now enrolled in the course."
+        );
         // alert("");
         navigate("/mycourses");
       } catch (error) {
