@@ -87,7 +87,7 @@ const CoursePage = () => {
               alt={course ? course.name : "Loading..."}
               className={styles.courseThumbnail}
             />
-            <div>
+            <div className="ml-5">
               <h2 className={styles.courseName}>
                 {course ? course.name : "Loading..."}
               </h2>

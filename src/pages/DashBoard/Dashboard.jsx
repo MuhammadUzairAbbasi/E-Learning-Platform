@@ -1,4 +1,5 @@
 import React, { useContext, useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import { Container, Typography, Box } from "@mui/material";
 import CourseCard from "./CourseCard/CourseCard";
 import StudentSidebar from "../StudentSidebar/StudentSidebar";
@@ -18,7 +19,8 @@ const Dashboard = () => {
         const response = await axios.get(
           `${baseServerUrl}/api/enroll/${user._id}/enrolled-courses`
         );
-        setCourseData(response.data); // Set the fetched data to state
+        setCourseData(response.data); 
+        console.log(response.data);// Set the fetched data to state
       } catch (error) {
         console.error("No courses enrolled:", error);
       }
@@ -61,13 +63,15 @@ const Dashboard = () => {
           <Container>
             <div className={styles.courseContainer}>
               {courseData.map((course) => (
-                <CourseCard
-                  key={course._id}
-                  name={course.course[0].name}
-                  img={course.course[0].thumbnail}
-                  date={course.enrollmentDate}
-                  progress={course.progress}
-                />
+                <Link to={`/courseinfo/${course.course[0]._id}`}>
+                  <CourseCard
+                    key={course._id}
+                    name={course.course[0].name}
+                    img={course.course[0].thumbnail}
+                    date={course.enrollmentDate}
+                    progress={course.progress}
+                  />
+                </Link>
               ))}
             </div>
           </Container>

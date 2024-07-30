@@ -65,7 +65,7 @@ const ConditionalRoutes = () => {
     if (
       !user &&
       location.pathname !== "/login" &&
-      location.pathname !== "/register" && 
+      location.pathname !== "/register" &&
       location.pathname !== "/forgot-password"
     ) {
       navigate("/login");
@@ -96,7 +96,7 @@ const ConditionalRoutes = () => {
               user.role === "Admin" ? (
                 <Navigate to="/admindashboard" />
               ) : (
-               < Navigate to="/dashboard" />
+                <Navigate to="/dashboard" />
               )
             ) : (
               <Navigate to="/login" />
@@ -108,8 +108,11 @@ const ConditionalRoutes = () => {
           path="/register"
           element={user ? <Navigate to="/" /> : <Register />}
         />
-        <Route path="/dashboard" element={renderProtectedRoute(Dashboard,"Student")}/>
-        <Route  path="/forgot-password" element={<ForgotPassword/>}/>
+        <Route
+          path="/dashboard"
+          element={renderProtectedRoute(Dashboard, "Student")}
+        />
+        <Route path="/forgot-password" element={<ForgotPassword />} />
         <Route
           path="/profile"
           element={renderProtectedRoute(Profile, "Student")}
