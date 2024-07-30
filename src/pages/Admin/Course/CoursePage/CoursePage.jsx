@@ -8,6 +8,7 @@ import { Button } from "@mui/material";
 import { AiOutlinePlus } from "react-icons/ai";
 import styles from "./CoursePage.module.css"; // Import the CSS module
 import AdminSidebar from "../../AdminSidebar/AdminSidebar";
+import { toast } from "react-toastify";
 
 const CoursePage = () => {
   const { courseId } = useParams();
@@ -65,8 +66,10 @@ const CoursePage = () => {
       setCourseLectures((prevLectures) =>
         prevLectures.filter((lecture) => lecture._id !== lectureId)
       );
+      toast.success("Lecture Deleted Successfully")
     } catch (error) {
       console.error("Error deleting lecture:", error);
+      toast.error("Error deleting lecture:");
     }
   };
 
@@ -82,25 +85,35 @@ const CoursePage = () => {
             <img
               src={course ? course.thumbnail : ""}
               alt={course ? course.name : "Loading..."}
-              className="w-32 h-32 mr-4"
+              className={styles.courseThumbnail}
             />
-            <h3 className={styles.courseName}>
-              {course ? course.name : "Loading..."}
-            </h3>
+            <div>
+              <h2 className={styles.courseName}>
+                {course ? course.name : "Loading..."}
+              </h2>
+              <h4 className={styles.courseDescription}>
+                {course ? course.description : "Loading..."}
+              </h4>
+            </div>
           </div>
         </div>
 
-        <div className="flex flex-row justify-end m-3 font-extrabold">
-          <Button variant="contained" size="large" className={styles.uploadButton} onClick={handleUploadClick}>
-            <AiOutlinePlus className="mr-3 text-large" />
-            Upload Lecture
+        <div className="flex flex-row justify-between m-3 font-extrabold">
+          <h4 className="text-4xl font-bold m-2">Lectures</h4>
+          <Button
+            variant="contained"
+            size="medium"
+            className={styles.uploadButton}
+            onClick={handleUploadClick}
+          >
+            <AiOutlinePlus className="mr-3 text-xl" />
+            <h4 className={styles.btncontent}>Upload Lecture</h4>
           </Button>
         </div>
 
         <div className={styles.flex1}>
           <div className={styles.container}>
             <div className={styles.lecturesSection}>
-              <h4 className="text-3xl font-bold mb-2">Lectures</h4>
               {courseLectures.length > 0 ? (
                 courseLectures.map((lecture, index) => (
                   <LectureItem

@@ -1,4 +1,4 @@
-import React, { useContext,useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Link, NavLink } from "react-router-dom";
 import { IconButton, Avatar } from "@mui/material";
 import NotificationsActiveIcon from "@mui/icons-material/NotificationsActive";
@@ -9,30 +9,28 @@ import { baseServerUrl } from "../../constants";
 import { UserContext } from "../../App";
 
 const Header = () => {
-  const {user}=useContext(UserContext);
+  const { user } = useContext(UserContext);
   const [image, setImage] = useState("");
-  const [userdata,setUserData]=useState("");
+  const [userdata, setUserData] = useState("");
 
-    useEffect(() => {
-      // Fetch the initial user data here if needed
-      const fetchUser = async () => {
-        try {
-          const response = await axios.get(
-            `${baseServerUrl}/api/users/profile/${user._id}`
-          );
-          console.log(response.data);
-          setUserData(response.data);
-          setImage(response.data.profilePicture);
-        } catch (error) {
-          console.error("Error fetching user data:", error);
-        }
-      };
+  useEffect(() => {
+    // Fetch the initial user data here if needed
+    const fetchUser = async () => {
+      try {
+        const response = await axios.get(
+          `${baseServerUrl}/api/users/profile/${user._id}`
+        );
+        // console.log(response.data);
+        setUserData(response.data);
+        setImage(response.data.profilePicture);
+      } catch (error) {
+        console.error("Error fetching user data:", error);
+      }
+    };
 
-      fetchUser();
-    }, [userdata]);
+    fetchUser();
+  }, [userdata]);
 
-
-  
   return (
     <div className="header">
       <div className="header-wrapper">

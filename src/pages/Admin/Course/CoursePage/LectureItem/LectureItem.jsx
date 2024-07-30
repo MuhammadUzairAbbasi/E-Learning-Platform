@@ -69,7 +69,7 @@ const LectureItem = ({ lecture, toggleLecture, onDelete }) => {
       </div>
       {lecture.isOpen && (
         <div className="lecture-details mt-4">
-          <div className="flex justify-center">
+          <div className="flex justify-start">
             {lecture.videoLink && (
               <div
                 className="video-player flex flex-col items-center"
@@ -80,7 +80,7 @@ const LectureItem = ({ lecture, toggleLecture, onDelete }) => {
             )}
           </div>
           <div>
-            <h4 className="text-2xl font-semibold mt-2">Description</h4>
+            <h4 className="text-xl font-bold mt-2">Description</h4>
             <p className=" mt-2 text-xl">{lecture.description}</p>
           </div>
         </div>
