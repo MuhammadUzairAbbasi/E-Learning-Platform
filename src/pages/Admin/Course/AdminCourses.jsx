@@ -43,7 +43,7 @@ const AdminCourses = () => {
     };
 
     fetchCourses();
-  }, [courses]);
+  }, []);
 
   const handleDeleteCourse = async (courseId) => {
     try {
@@ -56,7 +56,7 @@ const AdminCourses = () => {
       setCourses((prevCourses) =>
         prevCourses.filter((course) => course._id !== courseId)
       );
-      toast.success("Course Deleted")
+      toast.success("Course Deleted");
     } catch (error) {
       console.error("Error deleting course:", error);
       toast.error("Error While Deleting Course , Try Again Later");
@@ -84,7 +84,7 @@ const AdminCourses = () => {
                   marginBottom: 5,
                 }}
               >
-                <AddIcon className="mr-2"/>
+                <AddIcon className="mr-2" />
                 Add Course
               </Button>
             </div>

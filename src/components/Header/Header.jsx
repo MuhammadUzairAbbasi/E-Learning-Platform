@@ -9,31 +9,38 @@ import { baseServerUrl } from "../../constants";
 import { UserContext } from "../../App";
 
 const Header = () => {
-  const { user } = useContext(UserContext);
+  const { user, profileUpdated, setProfileUpdated } = useContext(UserContext);
   const [image, setImage] = useState("");
   const [anchorEl, setAnchorEl] = useState(null);
   const [notifications, setNotifications] = useState([]);
 
+  // Fetch user profile and notifications
   useEffect(() => {
-    const fetchUser = async () => {
+    const fetchUserData = async () => {
       try {
-        const response = await axios.get(
+        const userResponse = await axios.get(
           `${baseServerUrl}/api/users/profile/${user._id}`
         );
-        setImage(response.data.profilePicture);
+        setImage(userResponse.data.profilePicture);
+        setProfileUpdated(false); // Reset profileUpdated flag after fetching
       } catch (error) {
         console.error("Error fetching user data:", error);
       }
     };
-    fetchUser();
-  }, [image]);
 
+    if (user) {
+      fetchUserData();
+    }
+  }, [user._id, profileUpdated, setProfileUpdated, user]);
+
+  // Fetch notifications only if the user's role is Student
   useEffect(() => {
     const fetchNotifications = async () => {
       try {
         const response = await axios.get(
           `${baseServerUrl}/api/notifications/getnotifications`
         );
+        // Filter notifications where `read` is false
         setNotifications(
           response.data.filter((notification) => !notification.read)
         );
@@ -41,8 +48,11 @@ const Header = () => {
         console.error("Error fetching notifications:", error);
       }
     };
-    fetchNotifications();
-  }, []);
+
+    if (user && user.role === "Student") {
+      fetchNotifications();
+    }
+  }, [user]); // Dependencies: runs when `user` changes
 
   const handleNotificationClick = (event) => {
     setAnchorEl(event.currentTarget);
@@ -55,6 +65,7 @@ const Header = () => {
   const handleNotificationItemClick = async (id) => {
     try {
       await axios.put(`${baseServerUrl}/api/notifications/markasread/${id}`);
+      // Update local state after marking notification as read
       setNotifications((prevNotifications) =>
         prevNotifications.filter((notification) => notification._id !== id)
       );
@@ -91,9 +102,9 @@ const Header = () => {
                     No new notifications
                   </MenuItem>
                 ) : (
-                  notifications.map((notification, index) => (
+                  notifications.map((notification) => (
                     <MenuItem
-                      key={index}
+                      key={notification._id}
                       onClick={() =>
                         handleNotificationItemClick(notification._id)
                       }

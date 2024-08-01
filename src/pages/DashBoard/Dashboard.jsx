@@ -19,15 +19,15 @@ const Dashboard = () => {
         const response = await axios.get(
           `${baseServerUrl}/api/enroll/${user._id}/enrolled-courses`
         );
-        setCourseData(response.data);
-        console.log(response.data); // Set the fetched data to state
+        setCourseData(response.data); 
+        console.log(response.data);// Set the fetched data to state
       } catch (error) {
         console.error("No courses enrolled:", error);
       }
     };
 
     fetchEnrolledCourses();
-  }, [courseData]);
+  }, [user._id]);
 
   const toggleSidebar = () => {
     setSidebarExpanded(!isSidebarExpanded);

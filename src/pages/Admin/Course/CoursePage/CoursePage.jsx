@@ -36,7 +36,7 @@ const CoursePage = () => {
     };
 
     fetchCourseData();
-  }, [courseLectures]);
+  }, []);
 
   const toggleLecture = (id) => {
     setOpenLectures((prevOpenLectures) =>

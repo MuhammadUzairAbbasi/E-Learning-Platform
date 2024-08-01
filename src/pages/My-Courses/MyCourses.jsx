@@ -29,7 +29,7 @@ const MyCourses = () => {
     };
 
     fetchEnrolledCourses();
-  }, [courses]);
+  }, [user._id]);
 
   return (
     <div className={styles.myCourses}>

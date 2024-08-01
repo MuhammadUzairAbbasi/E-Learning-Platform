@@ -21,7 +21,7 @@ const Profile = () => {
   const [isSidebarExpanded, setSidebarExpanded] = useState(false);
   const [profile, setProfile] = useState({});
   const [profilePicture, setProfilePicture] = useState(null);
-  const { user } = useContext(UserContext);
+  const { user, setProfileUpdated } = useContext(UserContext);
 
   useEffect(() => {
     const fetchProfile = async () => {
@@ -29,7 +29,6 @@ const Profile = () => {
         const response = await axios.get(
           `${baseServerUrl}/api/users/profile/${user._id}`
         );
-        console.log(response.data);
         setProfile(response.data);
         setProfilePicture(response.data.profilePicture);
       } catch (error) {
@@ -38,7 +37,7 @@ const Profile = () => {
     };
 
     fetchProfile();
-  }, [profile]);
+  }, [user._id]);
 
   const toggleSidebar = () => {
     setSidebarExpanded(!isSidebarExpanded);
@@ -103,6 +102,7 @@ const Profile = () => {
       if (response.data) {
         setProfile(response.data);
         toast.success("Profile Updated Successfully");
+        setProfileUpdated(true); // Set profileUpdated to true
       }
     } catch (error) {
       console.error("Error updating profile data:", error);

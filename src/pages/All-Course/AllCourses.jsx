@@ -28,7 +28,7 @@ const AllCourses = () => {
     };
 
     fetchCourses();
-  }, [courses]);
+  }, []);
 
  
 

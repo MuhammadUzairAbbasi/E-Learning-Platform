@@ -5,9 +5,6 @@ import "./CourseCard.css";
 
 const CourseCard = ({name,img,date,progress}) => {
   const navigate = useNavigate();
-
-  console.log(name,img,date,progress);
-
   const handleClick = () => {
     navigate('/courseinfo/')
   };
