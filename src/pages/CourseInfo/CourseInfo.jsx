@@ -35,6 +35,9 @@ const CourseInfo = () => {
     };
 
     fetchCourseData();
+    const intervalId = setInterval(fetchCourseData, 10000);
+
+    return () => clearInterval(intervalId);
   }, [user._id]);
 
   const toggleLecture = (id) => {
