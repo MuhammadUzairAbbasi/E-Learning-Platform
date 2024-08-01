@@ -51,6 +51,9 @@ const Header = () => {
 
     if (user && user.role === "Student") {
       fetchNotifications();
+      const intervalId = setInterval(fetchNotifications, 10000); // Poll every 30 seconds
+
+      return () => clearInterval(intervalId);
     }
   }, [user]); // Dependencies: runs when `user` changes
 

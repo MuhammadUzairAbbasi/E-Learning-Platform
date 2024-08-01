@@ -1,12 +1,14 @@
 import { Container, Typography, Box } from "@mui/material";
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import axios from "axios";
 import CardOfAllCourse from "./cardOfCourse/CardOfAllCourse";
 import StudentSidebar from "../StudentSidebar/StudentSidebar";
 import "./allCourses.css";
 import { baseServerUrl } from "../../constants";
+import { UserContext } from "../../App";
 
 const AllCourses = () => {
+  const { user } = useContext(UserContext);
   const [isSidebarExpanded, setSidebarExpanded] = useState(false);
   const [courses, setCourses] = useState([]);
   const [error, setError] = useState(null);
@@ -24,13 +26,14 @@ const AllCourses = () => {
         setCourses(response.data);
       } catch (err) {
         setError(err.message);
-      } 
+      }
     };
 
     fetchCourses();
-  }, []);
+    const intervalId = setInterval(fetchCourses, 11000); 
 
- 
+    return () => clearInterval(intervalId);
+  }, [user]);
 
   if (error) {
     return <Typography variant="h5">Error: {error}</Typography>;
