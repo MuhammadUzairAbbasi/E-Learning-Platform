@@ -29,6 +29,9 @@ const MyCourses = () => {
     };
 
     fetchEnrolledCourses();
+    const intervalId = setInterval(fetchEnrolledCourses, 10000); // Poll every 30 seconds
+
+      return () => clearInterval(intervalId);
   }, [user._id]);
 
   return (
