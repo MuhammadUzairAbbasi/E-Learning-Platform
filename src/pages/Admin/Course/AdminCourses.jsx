@@ -43,7 +43,7 @@ const AdminCourses = () => {
     };
 
     fetchCourses();
-  }, []);
+  }, [courses]);
 
   const handleDeleteCourse = async (courseId) => {
     try {

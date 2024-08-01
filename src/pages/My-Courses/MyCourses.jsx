@@ -29,7 +29,7 @@ const MyCourses = () => {
     };
 
     fetchEnrolledCourses();
-  }, [user._id]);
+  }, [courses]);
 
   return (
     <div className={styles.myCourses}>
@@ -50,9 +50,17 @@ const MyCourses = () => {
             </Typography>
           </Box>
           <div className={styles.cardContainer}>
-            {courses.map((course, index) => (
-              <CardOfMyCourse key={index} course={course} />
-            ))}
+            {courses.length === 0 ? (
+              <div className={styles.noCoursesMessage}>
+                <Typography variant="h6" color="textSecondary">
+                  No courses enrolled.
+                </Typography>
+              </div>
+            ) : (
+              courses.map((course, index) => (
+                <CardOfMyCourse key={index} course={course} />
+              ))
+            )}
           </div>
         </Container>
       </div>

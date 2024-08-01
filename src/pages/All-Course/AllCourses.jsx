@@ -28,7 +28,7 @@ const AllCourses = () => {
     };
 
     fetchCourses();
-  }, []);
+  }, [courses]);
 
  
 
@@ -55,9 +55,17 @@ const AllCourses = () => {
             </Typography>
           </Box>
           <div className="allcourses-card-container">
-            {courses.map((course, index) => (
-              <CardOfAllCourse key={index} course={course} />
-            ))}
+            {courses.length === 0 ? (
+              <div className="noCoursesMessage">
+                <Typography variant="h6" color="textSecondary">
+                  No courses available.
+                </Typography>
+              </div>
+            ) : (
+              courses.map((course, index) => (
+                <CardOfAllCourse key={index} course={course} />
+              ))
+            )}
           </div>
         </Container>
       </div>

@@ -37,6 +37,14 @@
   max-height: calc(100vh - 150px);
 }
 
+.noCoursesMessage {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 60vh;
+  width: 100%;
+}
+
 .courseCard {
   margin-top: 10px;
 }

@@ -38,7 +38,7 @@ const Profile = () => {
     };
 
     fetchProfile();
-  }, [user._id]);
+  }, [profile]);
 
   const toggleSidebar = () => {
     setSidebarExpanded(!isSidebarExpanded);

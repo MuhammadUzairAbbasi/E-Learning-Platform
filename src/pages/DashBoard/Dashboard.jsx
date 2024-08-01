@@ -19,15 +19,15 @@ const Dashboard = () => {
         const response = await axios.get(
           `${baseServerUrl}/api/enroll/${user._id}/enrolled-courses`
         );
-        setCourseData(response.data); 
-        console.log(response.data);// Set the fetched data to state
+        setCourseData(response.data);
+        console.log(response.data); // Set the fetched data to state
       } catch (error) {
         console.error("No courses enrolled:", error);
       }
     };
 
     fetchEnrolledCourses();
-  }, [user._id]);
+  }, [courseData]);
 
   const toggleSidebar = () => {
     setSidebarExpanded(!isSidebarExpanded);
@@ -62,17 +62,27 @@ const Dashboard = () => {
           </Container>
           <Container>
             <div className={styles.courseContainer}>
-              {courseData.map((course) => (
-                <Link to={`/courseinfo/${course.course[0]._id}`}>
-                  <CourseCard
+              {courseData.length === 0 ? (
+                <div className={styles.noCoursesMessage}>
+                  <Typography variant="h6" color="textSecondary">
+                    No courses enrolled.
+                  </Typography>
+                </div>
+              ) : (
+                courseData.map((course) => (
+                  <Link
+                    to={`/courseinfo/${course.course[0]._id}`}
                     key={course._id}
-                    name={course.course[0].name}
-                    img={course.course[0].thumbnail}
-                    date={course.enrollmentDate}
-                    progress={course.progress}
-                  />
-                </Link>
-              ))}
+                  >
+                    <CourseCard
+                      name={course.course[0].name}
+                      img={course.course[0].thumbnail}
+                      date={course.enrollmentDate}
+                      progress={course.progress}
+                    />
+                  </Link>
+                ))
+              )}
             </div>
           </Container>
         </div>

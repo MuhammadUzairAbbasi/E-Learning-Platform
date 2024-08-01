@@ -11,7 +11,6 @@ import { UserContext } from "../../App";
 const Header = () => {
   const { user } = useContext(UserContext);
   const [image, setImage] = useState("");
-  const [userdata, setUserData] = useState("");
   const [anchorEl, setAnchorEl] = useState(null);
   const [notifications, setNotifications] = useState([]);
 
@@ -21,14 +20,13 @@ const Header = () => {
         const response = await axios.get(
           `${baseServerUrl}/api/users/profile/${user._id}`
         );
-        setUserData(response.data);
         setImage(response.data.profilePicture);
       } catch (error) {
         console.error("Error fetching user data:", error);
       }
     };
     fetchUser();
-  }, [userdata]);
+  }, [image]);
 
   useEffect(() => {
     const fetchNotifications = async () => {
@@ -44,7 +42,7 @@ const Header = () => {
       }
     };
     fetchNotifications();
-  }, [notifications]);
+  }, []);
 
   const handleNotificationClick = (event) => {
     setAnchorEl(event.currentTarget);
@@ -57,8 +55,8 @@ const Header = () => {
   const handleNotificationItemClick = async (id) => {
     try {
       await axios.put(`${baseServerUrl}/api/notifications/markasread/${id}`);
-      setNotifications(
-        notifications.filter((notification) => notification._id !== id)
+      setNotifications((prevNotifications) =>
+        prevNotifications.filter((notification) => notification._id !== id)
       );
     } catch (error) {
       console.error("Error marking notification as read:", error);
@@ -73,32 +71,40 @@ const Header = () => {
           <h5>Edu Hub</h5>
         </div>
         <div className="right__header">
-          <IconButton onClick={handleNotificationClick}>
-            <Badge badgeContent={notifications.length} color="secondary">
-              <NotificationsActiveIcon />
-            </Badge>
-          </IconButton>
-          <Menu
-            id="notification-menu"
-            anchorEl={anchorEl}
-            keepMounted
-            open={Boolean(anchorEl)}
-            onClose={handleClose}
-            TransitionComponent={Fade}
-          >
-            {notifications.length === 0 ? (
-              <MenuItem onClick={handleClose}>No new notifications</MenuItem>
-            ) : (
-              notifications.map((notification, index) => (
-                <MenuItem
-                  key={index}
-                  onClick={() => handleNotificationItemClick(notification._id)}
-                >
-                  {notification.message}
-                </MenuItem>
-              ))
-            )}
-          </Menu>
+          {user && user.role === "Student" && (
+            <>
+              <IconButton onClick={handleNotificationClick}>
+                <Badge badgeContent={notifications.length} color="secondary">
+                  <NotificationsActiveIcon />
+                </Badge>
+              </IconButton>
+              <Menu
+                id="notification-menu"
+                anchorEl={anchorEl}
+                keepMounted
+                open={Boolean(anchorEl)}
+                onClose={handleClose}
+                TransitionComponent={Fade}
+              >
+                {notifications.length === 0 ? (
+                  <MenuItem onClick={handleClose}>
+                    No new notifications
+                  </MenuItem>
+                ) : (
+                  notifications.map((notification, index) => (
+                    <MenuItem
+                      key={index}
+                      onClick={() =>
+                        handleNotificationItemClick(notification._id)
+                      }
+                    >
+                      {notification.message}
+                    </MenuItem>
+                  ))
+                )}
+              </Menu>
+            </>
+          )}
           <Link to="/profile">
             <Avatar src={image} alt={user.username} />
           </Link>
